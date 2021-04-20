@@ -67,96 +67,9 @@
         <ul>
             <li><a href="#">Fresh</a>
                 <div class="menu__submenu">
-                    <div class="menu__submenu-list"><a class="menu__submenu-title" href="#">Специи</a>
-                        <ul>
-                            <li><a href="#">Адыгейская соль</a></li>
-                            <li><a href="#">Для бургера</a></li>
-                            <li><a href="#">Для вторых блюд</a></li>
-                            <li><a href="#">Для кондитерки</a></li>
-                            <li><a href="#">Для маринования</a></li>
-                            <li><a href="#">Для Мяса</a></li>
-                            <li><a href="#">Для Напитков</a></li>
-                            <li><a href="#">Для Птицы</a></li>
-                            <li><a href="#">Для Рыбы</a></li>
-                            <li><a href="#">Для Салатов</a></li>
-                            <li><a href="#">Для Супа</a></li>
-                            <li><a href="#">Дрожжи</a></li>
-                            <li><a href="#">Желе</a></li>
-                            <li><a href="#">Желирующие добавки</a></li>
-                            <li><a href="#">Кисель</a></li>
-                            <li><a href="#">Лимонная кислота</a></li>
-                            <li><a href="#">Магги</a></li>
-                            <li><a href="#">Пасхальная продукция</a></li>
-                            <li><a href="#">Перцов</a></li>
-                            <li><a href="#">Перцы</a></li>
-                            <li><a href="#">Пищевые добавки</a></li>
-                            <li><a href="#">Приправы универсальные</a></li>
-                            <li><a href="#">Сливки сухие</a></li>
-                            <li><a href="#">Сухари панировочные</a></li>
-                            <li><a href="#">Травы</a></li>
-                            <li><a href="#">Специи \ УЦЕНКА</a></li>
-                        </ul>
-                    </div>
-                    <div class="menu__submenu-list"><a class="menu__submenu-title" href="#">Крупы</a>
-                        <ul>
-                            <li><a href="#">Крупы весовые</a></li>
-                            <li><a href="#">Крупы мешки</a></li>
-                            <li><a href="#">Крупы фасованные</a></li>
-                            <li><a href="#">ТМ Кавказпродукт</a></li>
-                        </ul>
-                    </div>
-                    <div class="menu__submenu-list"><a class="menu__submenu-title" href="#">Макаронные изделия</a>
-                        <ul>
-                            <li><a href="#">Мак.изделия группа А</a></li>
-                            <li><a href="#">Мак.изделия группа В</a></li>
-                        </ul>
-                    </div>
-                    <div class="menu__submenu-list"><a class="menu__submenu-title" href="#">Масла растительные</a>
-                        <ul>
-                            <li><a href="#">Кукурузные масла</a></li>
-                            <li><a href="#">Оливковые масла</a></li>
-                            <li><a href="#">Подсолнечные масла</a></li>
-                        </ul>
-                    </div>
-                    <div class="menu__submenu-list"><a class="menu__submenu-title" href="#">Мука</a>
-                        <ul>
-                            <li><a href="#">1кг</a></li>
-                            <li><a href="#">25-50кг</a></li>
-                            <li><a href="#">2кг</a></li>
-                            <li><a href="#">5-10кг</a></li>
-                        </ul>
-                    </div>
-                    <div class="menu__submenu-list"><a class="menu__submenu-title" href="#">Соль, сода, сахар</a>
-                        <ul>
-                            <li><a href="#">Сода</a></li>
-                            <li><a href="#">Соль</a></li>
-                            <li><a href="#">Специи</a></li>
-                        </ul>
-                    </div>
-                    <div class="menu__submenu-list"><a class="menu__submenu-title" href="#">Яйцо</a></div>
-                    <div class="menu__submenu-logo"><img src="{{ asset('/assets/images/logo-menu1.png') }}" alt=""><img
-                            src="{{ asset('/assets/images/logo-menu2.png') }}" alt=""><img
-                            src="{{ asset('/assets/images/logo-menu3.png') }}"
-                            alt=""><img
-                            src="{{ asset('/assets/images/logo-menu4.png') }}" alt=""><img
-                            src="{{ asset('/assets/images/logo-menu5.png') }}"
-                            alt=""><img
-                            src="{{ asset('/assets/images/logo-menu6.png') }}" alt=""><img
-                            src="{{ asset('/assets/images/logo-menu7.png') }}" alt="">
-                    </div>
+                    @include('layouts.partials.nav')
                 </div>
             </li>
-            <li><a href="{{ route('catalog') }}">Non-Food</a></li>
-            <li><a href="#">Кондитерские изделия</a></li>
-            <li><a href="#">Консервация</a></li>
-            <li><a href="#">Холодильник</a></li>
-            <li><a href="#">сопутствующие товары</a></li>
-            <li><a href="#">Соки и Вода</a></li>
-            <li><a href="#">Чай и Кофе</a></li>
-            <li><a href="#">Хлебобулочные изделия</a></li>
-            <li><a href="#">Новинки</a></li>
-            <li><a href="#">Распродажа</a></li>
-            <li><a href="#">Товары по подписке</a></li>
         </ul>
     </div>
     <header class="header">
@@ -233,14 +146,6 @@
             </div>
         </div>
     </header>
-    <div class="breadcrumb-block">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                <li class="breadcrumb-item active">NON-FOOD</li>
-            </ol>
-        </div>
-    </div>
 
     @yield('content')
 
@@ -313,7 +218,8 @@
 <script type="text/javascript" src="{{ asset('vendors/select/select2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/jquery.nicescroll.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendors/jquery.ui.touch-punch.js') }}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script type="text/javascript" src="{{ asset('vendors/slick/slick.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
 </html>

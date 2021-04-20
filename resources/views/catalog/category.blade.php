@@ -1,7 +1,12 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
 
+    <div class="breadcrumb-block">
+        <div class="container">
+            {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('category') }}
+        </div>
+    </div>
 <div class="title-main">
     <div class="container">
         <div class="title-main__inner">

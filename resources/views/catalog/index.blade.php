@@ -1,7 +1,12 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
 
+    <div class="breadcrumb-block">
+        <div class="container">
+            {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('catalog') }}
+        </div>
+    </div>
     <div class="title-main">
         <div class="container">
             <div class="title-main__inner">
@@ -18,14 +23,14 @@
                             <img src="{{ asset('/assets/images/svg/icon-catalog1.svg') }}" alt=''>
                             {{ $category->value }}
                         </div>
-                        <a class="button button-all" href="{{ route('category') }}"><span>смотреть</span> +75 еще</a>
+                        <a class="button button-all" href="{{ route('category', $category->slug_category) }}"><span>смотреть</span> +75 еще</a>
                     </div>
                     <div class="row">
                         @foreach($category->products as $product)
                             <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                                 <div class="catalog__item catalog__item-bt">
                                     <div class="catalog__item-top">
-                                        <a class="catalog__item-img" href="{{ route('product', ['id' => $product->id]) }}">
+                                        <a class="catalog__item-img" href="{{ route('product', $product->slug_product) }}">
                                             <img src="{{ asset($product->preview_picture->src) }}" alt="">
                                         </a>
                                         <div class="catalog__item-fav">

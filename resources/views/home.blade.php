@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
 
@@ -37,11 +37,11 @@
         <div class="row">
             <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                 <div class="catalog__item catalog__item-bt">
-                    <div class="catalog__item-top"><a class="catalog__item-img" href="{{ route('product', ['id' => 1]) }}"><img src="{{ asset('assets/images/catalog-img2.jpg') }}" alt=""></a>
+                    <div class="catalog__item-top"><a class="catalog__item-img" href=""><img src="{{ asset('assets/images/catalog-img2.jpg') }}" alt=""></a>
                         <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
                         <div class="catalog__item-label catalog__item-label-hit"><span>хит</span></div>
                     </div>
-                    <div class="catalog__item-tx"><a class="catalog__item-title" href="{{ route('product', ['id' => 1]) }}">Клубника отборная ~ 250 г</a>
+                    <div class="catalog__item-tx"><a class="catalog__item-title" href="">Клубника отборная ~ 250 г</a>
                         <div class="catalog__item-numb">1 шт (125 г)</div>
                         <div class="catalog__item-bottom">
                             <div class="catalog__item-info">

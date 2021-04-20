@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProductTable extends Migration
+class AddSlugToProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AddProductTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table)
-    {
-            $table->integer('category_id');
-    });
+        Schema::table('products', function (Blueprint $table) {
+            $table->renameColumn('slug', 'slug_product');
+        });
     }
 
     /**
@@ -26,6 +25,8 @@ class AddProductTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('products', function (Blueprint $table) {
+            //
+        });
     }
 }

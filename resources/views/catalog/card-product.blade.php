@@ -1,7 +1,12 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
 
+    <div class="breadcrumb-block">
+        <div class="container">
+{{--            {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('product', $product) }}--}}
+        </div>
+    </div>
     <div class="card-product">
         <div class="container">
             <div class="card-product__inner">
@@ -98,15 +103,15 @@
                                 <div class="card-product__tabs-holder">
                                     <div class="card-product__tabs-inner">
                                         <div class="card-product__tabs-table">
-                                            @foreach($properties_values as $prop_value)
-                                                <div class="card-product__tabs-table-row">
-                                                    <div class="card-product__tabs-table-cell">{{ $prop_value->property->name }}
-                                                    </div>
-                                                    <div class="card-product__tabs-table-cell card-product__tabs-table-cell-city">
-                                                        {{$prop_value->value}}
-                                                    </div>
-                                                </div>
-                                            @endforeach
+{{--                                            @foreach($properties_values as $prop_value)--}}
+{{--                                                <div class="card-product__tabs-table-row">--}}
+{{--                                                    <div class="card-product__tabs-table-cell">{{ $prop_value->property->name }}--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="card-product__tabs-table-cell card-product__tabs-table-cell-city">--}}
+{{--                                                        {{$prop_value->value}}--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            @endforeach--}}
                                             {{--<div class="card-product__tabs-table-row">
                                                 <div class="card-product__tabs-table-cell">Срок годности:</div>
                                                 <div class="card-product__tabs-table-cell">5 суток</div>
