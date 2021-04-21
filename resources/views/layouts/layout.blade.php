@@ -64,13 +64,9 @@
             </div>
         </div>
         <a class="logo" href="/"><img src="{{ asset('/assets/images/svg/logo.svg') }}" alt=""><span>Маркетплейс<br> здорового<br> питания</span></a>
-        <ul>
-            <li><a href="#">Fresh</a>
-                <div class="menu__submenu">
+
                     @include('layouts.partials.nav')
-                </div>
-            </li>
-        </ul>
+
     </div>
     <header class="header">
         <div class="header__menu-mob">

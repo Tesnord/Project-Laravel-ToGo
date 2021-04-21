@@ -14,9 +14,9 @@ Breadcrumbs::for('catalog', function ($trail) {
 });
 
 // Home > Catalog > Category
-Breadcrumbs::for('category', function ($trail) {
+Breadcrumbs::for('category', function ($trail, $categories) {
     $trail->parent('catalog');
-    $trail->push('Категория', url('/catalog/category'));
+    $trail->push($categories->name, route('category', $categories));
 });
 
 // Home > Catalog > Category > Product

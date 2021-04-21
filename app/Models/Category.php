@@ -12,10 +12,14 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function subcategory(){
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
 
-        return $this->hasMany('App\Models\Category', 'parent_id');
-
+    public static function roots()
+    {
+        return self::where('parent_id', 0)->get();
     }
 
     use HasFactory;

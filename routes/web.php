@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-//Route::get('/catalog/', 'ProductController@index')->name('catalog');
-//Route::get('/catalog/{slug_category}/', 'ProductController@category')->name('category');
-//Route::get('/catalog/brand/', 'ProductController@brand')->name('brand');
-Route::get('/catalog/{slug_category}/{slug_product}/', 'ProductController@show');
+Route::get('/catalog/', 'ProductController@index')->name('catalog');
+Route::get('/catalog/{slug_category}/', 'ProductController@category')->name('category');
+Route::get('/catalog/brand/', 'ProductController@brand')->name('brand');
+Route::get('/catalog/{slug_category}/{slug_product}/', 'ProductController@show')->name('product');
 
 //Route::get('/catalog/{slug_category}/', 'ProductController@category')->name('category');
 //Route::get('/catalog/{slug_category}/{slug_product}/', 'ProductController@show')->name('product');

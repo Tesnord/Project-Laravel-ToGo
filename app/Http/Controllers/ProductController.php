@@ -11,11 +11,10 @@ class ProductController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index($slug_category)
     {
-        $categories = Category::all();
         return view('catalog.index', array(
-            'categories' => $categories,
+            'categories' => Category::where($slug_category),
         ));
     }
 
@@ -27,7 +26,6 @@ class ProductController extends Controller
     {
         $categories = Category::where('slug_category', $slug_category);
         $products = Product::all();
-
         return view('catalog.category', array(
             'products' => $products,
             'categories' => $categories,
