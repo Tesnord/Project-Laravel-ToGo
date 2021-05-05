@@ -4,23 +4,23 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 // Home
 Breadcrumbs::for('home', function ($trail) {
-    $trail->push('Главная', url('/'));
+    $trail->push('Главная', route('home'));
 });
 
 // Home > Catalog
-Breadcrumbs::for('catalog', function ($trail) {
+Breadcrumbs::for('catalog.index', function ($trail, $categories) {
     $trail->parent('home');
-    $trail->push('Каталог', url('/catalog'));
+    $trail->push($categories->name, route('catalog.index', ['slug_category' => $categories->slug_categody]));
 });
 
 // Home > Catalog > Category
-Breadcrumbs::for('category', function ($trail, $categories) {
-    $trail->parent('catalog');
-    $trail->push($categories->name, route('category', $categories));
+Breadcrumbs::for('catalog.category', function ($trail, $categories) {
+    $trail->parent('catalog.index');
+    $trail->push($categories->name, route('catalog.category', $categories));
 });
 
 // Home > Catalog > Category > Product
-Breadcrumbs::for('product', function ($trail, $product) {
-    $trail->parent('category');
-    $trail->push($product->title, route('product', $product));
+Breadcrumbs::for('catalog.product', function ($trail, $product) {
+    $trail->parent('catalog.category');
+    $trail->push($product->title, route('catalog.product', $product));
 });

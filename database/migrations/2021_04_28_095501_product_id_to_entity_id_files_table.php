@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSlugToProductsTable extends Migration
+class ProductIdToEntityIdFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddSlugToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            //
+        Schema::table('files', function (Blueprint $table) {
+            $table->renameColumn('product_id', 'entity_id');
+            $table->string('entity_type');
         });
     }
 
@@ -25,7 +26,7 @@ class AddSlugToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('entity_id_files', function (Blueprint $table) {
             //
         });
     }

@@ -65,7 +65,7 @@
         </div>
         <a class="logo" href="/"><img src="{{ asset('/assets/images/svg/logo.svg') }}" alt=""><span>Маркетплейс<br> здорового<br> питания</span></a>
 
-                    @include('layouts.partials.nav')
+        @include('layouts.partials.nav')
 
     </div>
     <header class="header">
@@ -118,13 +118,14 @@
                     <a class="header__logo-mob" href="#"><img src="{{ asset('/assets/images/svg/logo-mob.svg') }}"
                                                               alt=""></a>
                     <div class="header__search">
-                        <form>
+                        <form action="">
                             <input type="text" placeholder="Что вы ищете?">
-                            <button class="header__search-btn" type="button"><img
-                                    src="{{ asset('/assets/images/svg/search.svg') }}"
-                                    alt=""></button>
-                            <div class="header__search-clean"><img src="{{ asset('/assets/images/svg/close-i.svg') }}"
-                                                                   alt=""></div>
+                            <button class="header__search-btn" type="button">
+                                <img src="{{ asset('/assets/images/svg/search.svg') }}" alt="">
+                            </button>
+                            <div class="header__search-clean">
+                                <img src="{{ asset('/assets/images/svg/close-i.svg') }}" alt="">
+                            </div>
                         </form>
                     </div>
                     <div class="header__bottom-info"><a class="header__bottom-info-item" href="#"><img
@@ -133,7 +134,8 @@
                                                                                  href="#"><img
                                 src="{{ asset('/assets/images/svg/icon-header2.svg') }}" alt=""> избранное<span
                                 class="header__bottom-info-notif">4</span></a><a
-                            class="header__bottom-info-item header__bottom-info-item-cart" href="#"><img
+                            class="header__bottom-info-item header__bottom-info-item-cart"
+                            href="{{ route('basket.index') }}"><img
                                 src="{{ asset('/assets/images/svg/icon-header3.svg') }}" alt=""> корзина<span
                                 class="header__bottom-info-notif">14</span></a><a
                             class="header__bottom-info-item header__bottom-info-item-enter" href="#"><img

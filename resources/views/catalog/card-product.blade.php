@@ -4,7 +4,7 @@
 
     <div class="breadcrumb-block">
         <div class="container">
-{{--            {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('product', $product) }}--}}
+            {{--{{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('product') }}--}}
         </div>
     </div>
     <div class="card-product">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-product__slider js-card-product-slider">
                     <div class="card-product__slider-nav">
-                        @foreach($product->images as $image)
+                        @foreach($product->getImages() as $image)
                             <div class="card-product__slider-nav-item">
                                 <div class="card-product__slider-nav-item-img"
                                      style="background-image: url({{ asset($image->src) }})"></div>
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="card-product__slider-for">
-                        @foreach($product->images as $image)
+                        @foreach($product->getImages() as $image)
                             <a class="card-product__slider-for-item" href="{{ asset($image->src) }}"
                                data-fancybox="cart-prod"
                                style="background-image: url({{ asset($image->src)}})"></a>
@@ -47,15 +47,24 @@
                     <div class="card-product__description-info">
                         <div class="card-product__description-price">
                             <div class="card-product__description-price-now">{{ $price }} {{ $currency }}</div>
-                            <div class="card-product__description-price-old">{{ $product->old_price }} ₽</div>
+                            <div class="card-product__description-price-old"></div>
                         </div>
                         <div class="card-product__description-numb">{{ $product->weight }} г</div>
                     </div>
                     <div class="card-product__description-btns">
-                        <a class="button button-primary" href="#">купить<img
-                                src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
-                        <a class="button button-all" href="#">в избранное<img
-                                src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>
+                        <form action="{{ route('basket.add', ['id' => $product->id]) }}"
+                              method="post" class="form-inline">
+                            <button class="button button-primary">купить<img
+                                    src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></button>
+                            @csrf
+                            <a class="button button-all" href="#">в избранное<img
+                                    src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>
+                        </form>
+                        {{-- @csrf
+                         <a class="button button-primary" href="{{ route('basket.add', ['id' => $product->id]) }}">купить<img
+                             src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
+                     <a class="button button-all" href="#">в избранное<img
+                             src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>--}}
                     </div>
                     <a class="card-product__description-link" href="#"><img
                             src="{{ asset('assets/images/svg/icon1.svg') }}" alt=""><span>Получайте товары по более привлекательной цене</span></a>
@@ -103,39 +112,17 @@
                                 <div class="card-product__tabs-holder">
                                     <div class="card-product__tabs-inner">
                                         <div class="card-product__tabs-table">
-{{--                                            @foreach($properties_values as $prop_value)--}}
-{{--                                                <div class="card-product__tabs-table-row">--}}
-{{--                                                    <div class="card-product__tabs-table-cell">{{ $prop_value->property->name }}--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="card-product__tabs-table-cell card-product__tabs-table-cell-city">--}}
-{{--                                                        {{$prop_value->value}}--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            @endforeach--}}
-                                            {{--<div class="card-product__tabs-table-row">
-                                                <div class="card-product__tabs-table-cell">Срок годности:</div>
-                                                <div class="card-product__tabs-table-cell">5 суток</div>
-                                            </div>
-                                            <div class="card-product__tabs-table-row">
-                                                <div class="card-product__tabs-table-cell">Температура хранения:</div>
-                                                <div class="card-product__tabs-table-cell">10 – 15 °С</div>
-                                            </div>
-                                            <div class="card-product__tabs-table-row">
-                                                <div class="card-product__tabs-table-cell">Калории (100г):</div>
-                                                <div class="card-product__tabs-table-cell">340 кКал</div>
-                                            </div>
-                                            <div class="card-product__tabs-table-row">
-                                                <div class="card-product__tabs-table-cell">Белки:</div>
-                                                <div class="card-product__tabs-table-cell">10 г</div>
-                                            </div>
-                                            <div class="card-product__tabs-table-row">
-                                                <div class="card-product__tabs-table-cell">Жиры:</div>
-                                                <div class="card-product__tabs-table-cell">0.2 г</div>
-                                            </div>
-                                            <div class="card-product__tabs-table-row">
-                                                <div class="card-product__tabs-table-cell">Углеводы:</div>
-                                                <div class="card-product__tabs-table-cell">28.5 г</div>
-                                            </div>--}}
+                                            @foreach($properties_values as $prop_value)
+                                                <div class="card-product__tabs-table-row">
+                                                    <div
+                                                        class="card-product__tabs-table-cell">{{ $prop_value->property->name }}
+                                                    </div>
+                                                    <div
+                                                        class="card-product__tabs-table-cell card-product__tabs-table-cell-city">
+                                                        {{$prop_value->value}}
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                         <div class="card-product__tabs-storage">
                                             <div class="card-product__tabs-storage-title">Хранение:</div>
@@ -249,36 +236,52 @@
                                 <div class="card-product__tabs-holder">
                                     <div class="card-product__tabs-inner">
                                         <div class="card-product__reviews">
-                                            <div class="card-product__reviews-item">
-                                                <div class="card-product__reviews-info">
-                                                    <div class="card-product__reviews-title">Лариса Шинкаренко</div>
-                                                    <div class="card-product__reviews-rating">
-                                                        <div class="card-product__reviews-rating-item"><img
-                                                                src="{{asset('assets/images/svg/rating-active.svg')}}"
-                                                                alt=""></div>
-                                                        <div class="card-product__reviews-rating-item"><img
-                                                                src="{{asset('assets/images/svg/rating-active.svg')}}"
-                                                                alt=""></div>
-                                                        <div class="card-product__reviews-rating-item"><img
-                                                                src="{{asset('assets/images/svg/rating-active.svg')}}"
-                                                                alt=""></div>
-                                                        <div class="card-product__reviews-rating-item"><img
-                                                                src="{{asset('assets/images/svg/rating-active.svg')}}"
-                                                                alt=""></div>
-                                                        <div class="card-product__reviews-rating-item"><img
-                                                                src="{{asset('assets/images/svg/rating.svg')}}" alt="">
+                                            @foreach($reviews as $review)
+                                                <div class="card-product__reviews-item">
+                                                    <div class="card-product__reviews-info">
+                                                        <div
+                                                            class="card-product__reviews-title">{{ $review->user->name }}</div>
+                                                        <div class="card-product__reviews-rating">
+                                                            @for($i = 0; $i < 5; $i++)
+                                                                @if(floor($review->rating) - $i >= 1)
+                                                                    <div class="card-product__reviews-rating-item">
+                                                                        <img
+                                                                            src="{{asset('assets/images/svg/rating-active.svg')}}"
+                                                                            alt="">
+                                                                    </div>
+                                                                @else
+                                                                    <div class="card-product__reviews-rating-item">
+                                                                        <img
+                                                                            src="{{asset('assets/images/svg/rating.svg')}}"
+                                                                            alt="">
+                                                                    </div>
+                                                                @endif
+                                                            @endfor
+                                                        </div>
+                                                        <div
+                                                            class="card-product__reviews-data">{{ $review->created_at->format('d.m.Y') }}</div>
+                                                    </div>
+                                                    <div class="card-product__reviews-description">
+                                                        <p>{{ $review->description }}</p>
+                                                        <div class="card-product__reviews-list">
+                                                            @foreach($review->getImages() as $image)
+
+                                                                <a class="card-product__reviews-list-img"
+                                                                   href="{{ asset($image->src) }}"
+                                                                   data-fancybox="rev1"
+                                                                   style="background-image: url({{ asset($image->src) }})"></a>
+                                                            @endforeach
+                                                                    <div
+                                                                    class="card-product__reviews-list-img card-product__reviews-list-img-all"
+                                                                    style="background-image: url({{ asset($image->src) }})">
+                                                                    <span>еще 3</span></div>
+
+
                                                         </div>
                                                     </div>
-                                                    <div class="card-product__reviews-data">14.01.2021</div>
                                                 </div>
-                                                <div class="card-product__reviews-description">
-                                                    <p>Хорошее и натуральное спелое манго, которое будет сочиться и
-                                                        будет обладать неповторимымвкусом и ароматом, найти достаточно
-                                                        сложно! Если приобрести манго в любом сетевом магазине,то Вы
-                                                        сами в этом убедитесь. Их манго жесткие, незрелые, блестят</p>
-                                                </div>
-                                            </div>
-                                            <div class="card-product__reviews-item">
+                                            @endforeach
+                                            {{--<div class="card-product__reviews-item">
                                                 <div class="card-product__reviews-info">
                                                     <div class="card-product__reviews-title">Лариса Шинкаренко</div>
                                                     <div class="card-product__reviews-rating">
@@ -558,7 +561,7 @@
                                                             style="background-image: url({{asset('assets/images/card-img4.jpg')}})"></a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                             <div class="card-product__reviews-btn js-card-product-reviews">смотреть +75
                                                 еще
                                             </div>

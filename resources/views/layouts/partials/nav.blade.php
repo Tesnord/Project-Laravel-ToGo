@@ -51,16 +51,16 @@
 // ?>
 <ul>
     @foreach($menu_categories as $menu)
-    <li><a href="{{ route('category', ['slug_category' => $menu->slug_category]) }}">{{ $menu->name }}</a>
+    <li><a href="{{ route('catalog.index', ['slug_category' => $menu->slug_category]) }}">{{ $menu->name }}</a>
         <div class="menu__submenu">
             <ul>
                 @foreach($menu->children as $child)
                     <div class="menu__submenu-list">
                         <a class="menu__submenu-title"
-                           href="{{ route('category', ['slug_category' => $child->slug_category]) }}">{{ $child->name }}</a>
+                           href="{{ route('catalog.category', ['slug_category' => $child->slug_category]) }}">{{ $child->name }}</a>
                             @foreach($child->children as $children)
                                 <li>
-                                    <a href="{{ route('category', ['slug_category' => $children->slug_category]) }}">{{ $children->name }}</a>
+                                    <a href="{{ route('catalog.category', ['slug_category' => $children->slug_category]) }}">{{ $children->name }}</a>
                                 </li>
                             @endforeach
                     </div>
@@ -70,16 +70,4 @@
     </li>
     @endforeach
 </ul>
-
-{{--
-    <div class="menu__submenu-list"><a class="menu__submenu-title" href=""></a>
-        <ul>
-            <li><a href="#"> PARENT_ID 2 </a></li>
-            <li><a href="#"> PARENT_ID 2 </a></li>
-            <li><a href="#"> PARENT_ID 2 </a></li>
-            <li><a href="#"> PARENT_ID 2 </a></li>
-            <li><a href="#"> PARENT_ID 2 </a></li>
-        </ul>
-    </div>
---}}
 

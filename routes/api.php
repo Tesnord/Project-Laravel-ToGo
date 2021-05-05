@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('basket')->group(function () {
+    Route::post('/change-product-quantity', 'BasketController@changeProductQuantity')
+        ->name('basket.quantity');
+    Route::post('/add/{id}', 'BasketController@add')
+        ->where('id', '[0-9]+')
+        ->name('basket.add');
+});

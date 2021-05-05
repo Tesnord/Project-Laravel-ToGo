@@ -15,10 +15,11 @@ class FileSeeder extends Seeder
      */
     public function run()
     {
-        for ($m = 1; $m < 6; $m++)
+        for ($m = 1; $m < 10; $m++)
             DB::table('files')->insert([
-                'src' => '/assets/images/card-img' . $m . '.jpg',
-                'product_id' => 1,
+                'src' => '/assets/images/card-img' . rand(1, 5) . '.jpg',
+                'entity_id' => rand(1, 5),
+                'entity_type' => 'App/Model/Review'
             ]);
 
     }
