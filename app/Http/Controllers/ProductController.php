@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -13,19 +14,16 @@ class ProductController extends Controller
             ->where('slug_category', $slug_category)
             ->get();
 
-        // foreach ($categories as &$category) {
-        //     $category->
-        // }
-
         return view('catalog.index', [
             'categories' => $categories,
-            // 'counts' => $counts,
         ]);
     }
 
     public function category($slug_category)
     {
-        $categories = Category::where('slug_category', $slug_category)->get();
+        $categories = Category::query()
+            ->where('slug_category', $slug_category)
+            ->get();
         $products = Product::where('category_id');
 
         return view('catalog.category', [
@@ -47,6 +45,7 @@ class ProductController extends Controller
         $currency = $product->price->currency->value;
         $reviews = $product->reviews;
 
+
         return view('catalog.card-product', [
             'product' => $product,
             'reviews' => $reviews,
@@ -56,24 +55,28 @@ class ProductController extends Controller
         ]);
     }
 
-    public function review()
+    public function favorite()
     {
+        $cookie_market_favorites = $_COOKIE["market_favorites"];
+        $cookie_market_favorites_obj = json_decode($cookie_market_favorites);
+        $favorites = $cookie_market_favorites_obj->favorites;
 
+        $q_favorites = Product::query()->find($favorites)->all();
+
+        return view('catalog.favorite', array(
+            "products" => $q_favorites
+        ));
     }
 
-    /*public function search(Request $request)
+
+    public function search(Request $request)
     {
         $search = $request->input('query');
         $query = Product::search($search);
-        $products = $query->withQueryString();
+        $products = $query->paginate(6)->withQueryString();
         return view('catalog.search', [
             'products' => $products,
             'search' => $search,
         ]);
-    }*/
-
-    public function search()
-    {
-        return view('catalog.search');
     }
 }

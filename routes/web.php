@@ -13,17 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', 'HomeController@index')->name('home');
-
-Route::get('/{slug_category}/', 'ProductController@index')->name('catalog');
-Route::get('/catalog/{slug_category}', 'ProductController@category')->name('category');
-Route::get('/catalog/{slug_brand}', 'ProductController@brand')->name('brand');
-Route::get('/catalog/{slug_category}/{slug_product}', 'ProductController@show')->name('product');*/
-
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/policy', 'HomeController@policy')->name('policy');
+
+Route::prefix('action')->group(function () {
+    Route::get('/', 'ActionsController@index')->name('actions.index');
+    Route::get('/item', 'ActionsController@show')->name('actions.show');
+});
+
+Route::prefix('brand')->group(function () {
+    Route::get('/', 'BrandsController@index')->name('brands.index');
+    Route::get('/item', 'BrandsController@show')->name('brands.show');
+});
+
 
 Route::prefix('catalog')->group(function () {
     Route::get('/search', 'ProductController@search')->name('catalog.search');
+    Route::get('/favorite', 'ProductController@favorite')->name('catalog.favorite');
     Route::get('/{slug_category}', 'ProductController@index')->name('catalog.index');
     Route::get('/category/{slug_category}', 'ProductController@category')->name('catalog.category');
     Route::get('/brand/{slug_brand}', 'ProductController@brand')->name('catalog.brand');

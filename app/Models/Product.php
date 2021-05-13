@@ -54,6 +54,11 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function descriptions()
+    {
+        return $this->belongsToMany(Description::class);
+    }
+
     /**
      * Позволяет искать товары по заданным словам
      *

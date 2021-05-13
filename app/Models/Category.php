@@ -80,6 +80,12 @@ class Category extends Model
         return $this->children()->with('childrenRcsv');
     }
 
+
+    public function icons()
+    {
+        return $this->hasMany(CategoryIcon::class);
+    }
+
     /**
      * @param array $array
      * @return array

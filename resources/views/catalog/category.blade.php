@@ -12,7 +12,7 @@
     <div class="container">
         <div class="title-main__inner">
             <h1>{{ $category->name }}</h1>
-            <div class="title-main__numb">230 товаров</div>
+            <div class="title-main__numb">{{ $category->getProductsCountRcsv() }}</div>
         </div>
     </div>
 </div>
@@ -166,7 +166,15 @@
                     <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                         <div class="catalog__item">
                             <div class="catalog__item-top"><a class="catalog__item-img" href="{{ route('catalog.product', ['slug_product' => $product->slug_product]) }}">
-                                    <img src="{{ asset($product->preview_picture->src) }}" alt="">
+                                    @if($product->preview_picture !== null)
+                                        <img
+                                            src="{{ $product->preview_picture->src }}"
+                                            alt="">
+                                    @else
+                                        <img
+                                            src="/assets/images/svg/logo.svg"
+                                            alt="">
+                                    @endif
                                 </a>
                                 <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
                                 <div class="catalog__item-label catalog__item-label-hit"><span>хит</span></div>

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="{{ asset('vendors/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+
 </head>
 <svg style="display: none">
     <symbol id="vk" viewBox="0 0 22 12" fill="none">
@@ -70,20 +71,23 @@
     </div>
     <header class="header">
         <div class="header__menu-mob">
-            <div class="header__menu-icon"><a class="header__menu-icon-item" href="#"><img
-                        src="{{ asset('/assets/images/svg/icon-menu3.svg') }}" alt=""><span
-                        class="header__menu-icon-notif">4</span><span class="header__menu-icon-tit">баллы</span></a><a
-                    class="header__menu-icon-item" href="#"><img src="{{ asset('/assets/images/svg/icon-menu4.svg') }}"
-                                                                 alt=""><span
-                        class="header__menu-icon-notif">4</span><span class="header__menu-icon-tit">избранное</span></a>
+            <div class="header__menu-icon"><a class="header__menu-icon-item" href="#">
+                    <img src="{{ asset('/assets/images/svg/icon-menu3.svg') }}" alt="">
+                    <span class="header__menu-icon-notif">4</span>
+                    <span class="header__menu-icon-tit">баллы</span></a>
+                <a class="header__menu-icon-item" href="{{ route('catalog.favorite') }}">
+                    <img src="{{ asset('/assets/images/svg/icon-menu4.svg') }}" alt="">
+                    <span class="header__menu-icon-notif">4</span>
+                    <span class="header__menu-icon-tit">избранное</span>
+                </a>
             </div>
             <div class="header__menu-btn-catalog js-menu-btn-catalog">каталог товаров</div>
             <ul class="header__menu-main">
                 <li><a href="#">Поставщикам</a></li>
                 <li><a href="#">О нас</a></li>
                 <li><a href="#">Доставка и оплата</a></li>
-                <li><a href="#">Бренды</a></li>
-                <li><a href="#">Акции</a></li>
+                <li><a href="{{ route('brands.index') }}">Бренды</a></li>
+                <li><a href="{{ route('actions.index') }}">Акции</a></li>
             </ul>
             <div class="header__menu-info">
                 <div class="header__city"><img src="{{ asset('/assets/images/svg/map-i.svg') }}" alt=""> Краснодар</div>
@@ -104,8 +108,8 @@
                             <li><a href="#">Поставщикам</a></li>
                             <li><a href="#">О нас</a></li>
                             <li><a href="#">Доставка и оплата</a></li>
-                            <li><a href="#">Бренды</a></li>
-                            <li><a href="#">Акции</a></li>
+                            <li><a href="{{ route('brands.index') }}">Бренды</a></li>
+                            <li><a href="{{ route('actions.index') }}">Акции</a></li>
                         </ul>
                     </div>
                 </div>
@@ -118,9 +122,9 @@
                     <a class="header__logo-mob" href="#"><img src="{{ asset('/assets/images/svg/logo-mob.svg') }}"
                                                               alt=""></a>
                     <div class="header__search">
-                        <form action="">
-                            <input type="text" placeholder="Что вы ищете?">
-                            <button class="header__search-btn" type="button">
+                        <form action="{{ route('catalog.search') }}">
+                            <input type="search" name="query" placeholder="Что вы ищете?" aria-label="Search">
+                            <button class="header__search-btn" type="submit">
                                 <img src="{{ asset('/assets/images/svg/search.svg') }}" alt="">
                             </button>
                             <div class="header__search-clean">
@@ -131,7 +135,7 @@
                     <div class="header__bottom-info"><a class="header__bottom-info-item" href="#"><img
                                 src="{{ asset('/assets/images/svg/icon-header1.svg') }}" alt=""> баллы<span
                                 class="header__bottom-info-notif">4</span></a><a class="header__bottom-info-item"
-                                                                                 href="#"><img
+                                                                                 href="{{ route('catalog.favorite') }}"><img
                                 src="{{ asset('/assets/images/svg/icon-header2.svg') }}" alt=""> избранное<span
                                 class="header__bottom-info-notif">4</span></a><a
                             class="header__bottom-info-item header__bottom-info-item-cart"
@@ -172,7 +176,7 @@
                         <li><a href="#">О нас</a></li>
                         <li><a href="#">Поставщикам</a></li>
                         <li><a href="#">Доставка и оплата</a></li>
-                        <li><a href="#">Бренды</a></li>
+                        <li><a href="{{ route('brands.index') }}">Бренды</a></li>
                     </ul>
                     <div class="footer__top-info"><a class="footer__tel" href="tel:8 800 456 25 14">8 800 456 25
                             14</a><a class="footer__mail" href="mailto:markertogo@mail.ru">markertogo@mail.ru</a></div>
@@ -184,7 +188,7 @@
                 <div class="footer__bottom-inner">
                     <ul class="footer__bottom-info">
                         <li>© 2020, MARKET TO GO</li>
-                        <li><a href="#">Конфиденциальность</a></li>
+                        <li><a href="{{ route('policy') }}">Конфиденциальность</a></li>
                         <li><a href="#">Публичная оферта</a></li>
                         <li><a href="#">Карта сайта</a></li>
                     </ul>
