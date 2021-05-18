@@ -2,6 +2,9 @@
     <div class="container">
         <h3>Возможно вас заинтересует</h3>
         <div class="row">
+            {{--@foreach( as $products)
+                @include('layouts.catalog.product')
+            @endforeach--}}
             <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                 <div class="catalog__item catalog__item-bt">
                     <div class="catalog__item-top"><a class="catalog__item-img"

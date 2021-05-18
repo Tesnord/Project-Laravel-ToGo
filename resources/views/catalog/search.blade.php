@@ -4,10 +4,7 @@
 
     <div class="breadcrumb-block">
         <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                <li class="breadcrumb-item active">Результаты поиска</li>
-            </ol>
+            {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('search') }}
         </div>
     </div>
     @if(count($products))
@@ -33,53 +30,6 @@
                         <div class="row">
                             @foreach($products as $product)
                                 @include('layouts.catalog.product')
-                                {{--<div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
-                                    <div class="catalog__item">
-                                        <div class="catalog__item-top">
-                                            <a class="catalog__item-img"
-                                               href="{{ route('catalog.product', ['slug_product' => $product->slug_product]) }}">
-                                                @if($product->preview_picture !== null)
-                                                    <img
-                                                        src="{{ $product->preview_picture->src }}"
-                                                        alt="">
-                                                @else
-                                                    <img
-                                                        src="/assets/images/svg/logo.svg"
-                                                        alt="">
-                                                @endif
-                                            </a>
-                                            <div class="catalog__item-fav">
-                                                <svg>
-                                                    <use xlink:href="#like"></use>
-                                                </svg>
-                                            </div>
-                                            <div class="catalog__item-label catalog__item-label-hit">
-                                                <span>хит</span>
-                                            </div>
-                                        </div>
-                                        <div class="catalog__item-tx">
-                                            <a class="catalog__item-title"
-                                               href="{{ route('catalog.product', ['slug_product' => $product->slug_product]) }}">{{ $product->title }}</a>
-                                            <div class="catalog__item-numb">1 шт ({{ $product->weight }} г)</div>
-                                            <div class="catalog__item-bottom">
-                                                <div class="catalog__item-info">
-                                                    <div class="catalog__item-price">
-                                                        <div class="catalog__item-price-old">50 руб</div>
-                                                        <div
-                                                            class="catalog__item-price-now">{{ $product->price->value }} {{ $product->price->currency->value }}</div>
-                                                    </div>
-                                                    <form action="{{ route('basket.add', ['id' => $product->id]) }}"
-                                                          method="post" class="form-inline">
-                                                        <button class="button button-primary">купить<img
-                                                                src="{{ asset('assets/images/svg/cart.svg') }}" alt="">
-                                                        </button>
-                                                        @csrf
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>--}}
                             @endforeach
                             @else
                                 <div class="tx">

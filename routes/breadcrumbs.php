@@ -19,6 +19,18 @@ Breadcrumbs::for('home', function ($trail) {
         $trail->push('Корзина', route('basket.index'));
     });
 
+    // Home > Search
+    Breadcrumbs::for('search', function ($trail) {
+        $trail->parent('home');
+        $trail->push('Результат поиска', route('catalog.search'));
+    });
+
+    // Home > Favorite
+    Breadcrumbs::for('catalog.favorite', function ($trail) {
+        $trail->parent('home');
+        $trail->push('Избранное', route('catalog.favorite'));
+    });
+
     // Home > Brands
     Breadcrumbs::for('brands.index', function ($trail) {
         $trail->parent('home');
@@ -48,11 +60,6 @@ Breadcrumbs::for('home', function ($trail) {
         $trail->parent('home');
         $trail->push($category, route('catalog.index', ['path' => $category]));
     });
-        // Home > Catalog > Favorite
-        Breadcrumbs::for('catalog.favorite', function ($trail) {
-            $trail->parent('home');
-            $trail->push('Избранное', route('catalog.favorite'));
-        });
 
         // Home > Catalog > Category {path}
         Breadcrumbs::for('catalog.category', function ($trail, $category) {
