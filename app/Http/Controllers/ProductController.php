@@ -8,33 +8,23 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index($slug_category)
+    public function index(string $path = '/')
     {
-        $categories = Category::query()
-            ->where('slug_category', $slug_category)
-            ->get();
+        $category = Category::getByPath($path);
 
-        return view('catalog.index', [
-            'categories' => $categories,
-        ]);
-    }
-
-    public function category($slug_category)
-    {
-        $categories = Category::query()
-            ->where('slug_category', $slug_category)
-            ->get();
-        $products = Product::where('category_id');
-
-        return view('catalog.category', [
-            'products' => $products,
-            'categories' => $categories,
-        ]);
-    }
-
-    public function brand()
-    {
-        return view('catalog.brand');
+        if ($category->getLevel() < 2) {
+            return view('catalog.index', [
+                'category' => $category,
+                'sub_categories' => $category->children,
+                'products' => $category->getProductsRcsv()
+            ]);
+        } else {
+            return view('catalog.category', [
+                'category' => $category,
+                'sub_categories' => $category->children,
+                'products' => $category->getProductsRcsv()
+            ]);
+        }
     }
 
     public function show($slug_product)
@@ -55,12 +45,13 @@ class ProductController extends Controller
         ]);
     }
 
+    //{"market_favorites":[1,2,3,4]}    -  %7B%22favorites%22%3A%5B1%2C2%2C3%2C4%5D%7D
+    //{"market_favorites":[]}           -  %7B%22favorites%22%3A%5B%5D%7D
     public function favorite()
     {
         $cookie_market_favorites = $_COOKIE["market_favorites"];
         $cookie_market_favorites_obj = json_decode($cookie_market_favorites);
         $favorites = $cookie_market_favorites_obj->favorites;
-
         $q_favorites = Product::query()->find($favorites)->all();
 
         return view('catalog.favorite', array(
@@ -73,7 +64,7 @@ class ProductController extends Controller
     {
         $search = $request->input('query');
         $query = Product::search($search);
-        $products = $query->paginate(6)->withQueryString();
+        $products = $query->paginate(100)->withQueryString();
         return view('catalog.search', [
             'products' => $products,
             'search' => $search,

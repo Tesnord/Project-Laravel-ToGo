@@ -50,17 +50,17 @@
 //
 // ?>
 <ul>
-    @foreach($menu_categories as $menu)
-    <li><a href="{{ route('catalog.index', ['slug_category' => $menu->slug_category]) }}">{{ $menu->name }}</a>
+    @foreach($menu_categories as $level_1)
+    <li><a href="{{ route('catalog.index', ['path' => $level_1->getPath()]) }}">{{ $level_1->name }}</a>
         <div class="menu__submenu">
             <ul>
-                @foreach($menu->children as $child)
+                @foreach($level_1->children as $level_2)
                     <div class="menu__submenu-list">
                         <a class="menu__submenu-title"
-                           href="{{ route('catalog.category', ['slug_category' => $child->slug_category]) }}">{{ $child->name }}</a>
-                            @foreach($child->children as $children)
+                           href="{{ route('catalog.index', ['path' => $level_2->getPath()]) }}">{{ $level_2->name }}</a>
+                            @foreach($level_2->children as $level_3)
                                 <li>
-                                    <a href="{{ route('catalog.category', ['slug_category' => $children->slug_category]) }}">{{ $children->name }}</a>
+                                    <a href="{{ route('catalog.index', ['path' => $level_3->getPath()]) }}">{{ $level_3->name }}</a>
                                 </li>
                             @endforeach
                     </div>

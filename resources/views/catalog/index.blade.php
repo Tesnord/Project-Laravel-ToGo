@@ -1,36 +1,38 @@
 @extends('layouts.layout')
 
 @section('content')
-    @foreach($categories as $category)
         <div class="breadcrumb-block">
             <div class="container">
-                {{--{{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('catalog.index', ['slug_category' => $category->slug_category]) }}--}}
+                {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('catalog.index', $category->name) }}
             </div>
         </div>
         <div class="title-main">
             <div class="container">
                 <div class="title-main__inner">
                     <h1>{{ $category->name }}</h1>
-                    <div class="title-main__numb">{{ $category->getProductsCountRcsv() }}</div>
+                    <div class="title-main__numb">{{ $products->count() }}</div>
                 </div>
             </div>
         </div>
-        @foreach($category->children as $sub_category)
+        @foreach($sub_categories as $sub_category)
             <div class="catalog-min">
                 <div class="container">
                     <div class="catalog-min__top">
                         <div class="catalog-min__top-title">
-                            <img src="{{ asset('/assets/images/svg/icon-catalog1.svg') }}" alt=''>
+                            @foreach($sub_category->getImages() as $image)
+                            <img src="{{ asset($image->src) }}" alt=''>
+                            @endforeach
                             {{ $sub_category->name }}
                         </div>
                         <a class="button button-all"
-                           href="{{ route('catalog.category', ['slug_category' => $sub_category->slug_category]) }}">
+                           href="{{ route('catalog.index', ['path' => $sub_category->getPath()]) }}">
                             смотреть еще
                         </a>
                     </div>
                     <div class="row">
-                        @foreach($sub_category->products as $product)
-                            <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
+                        @foreach($sub_category->getProductsRcsv() as $product)
+                            @include('layouts.catalog.product')
+                            {{--<div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                                 <div class="catalog__item catalog__item-bt">
                                     <div class="catalog__item-top">
                                         <a class="catalog__item-img"
@@ -50,7 +52,12 @@
                                                 <use xlink:href="#like"></use>
                                             </svg>
                                         </div>
-                                        <div class="catalog__item-label catalog__item-label-hit"><span>хит</span></div>
+                                        @foreach($product->labels as $labels)
+                                            @foreach($labels->getLabel() as $label)
+                                                {!! $label->value !!}
+                                            @endforeach
+                                        @endforeach
+                                        --}}{{--<div class="catalog__item-label catalog__item-label-hit"><span>хит</span></div>--}}{{--
                                     </div>
                                     <div class="catalog__item-tx">
                                         <a class="catalog__item-title"
@@ -74,16 +81,15 @@
                                                 </form>
 
                                             </div>
-
+                                            <a class="catalog__item-offer" href="#">5 предложений</a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
                         @endforeach
                     </div>
                 </div>
             </div>
         @endforeach
-    @endforeach
 
 @endsection

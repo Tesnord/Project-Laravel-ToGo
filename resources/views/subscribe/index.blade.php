@@ -51,19 +51,33 @@
         <div class="row">
             <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                 <div class="catalog__item catalog__item-bt">
-                    <div class="catalog__item-top"><a class="catalog__item-img" href="#"><img src="assets/images/catalog-img2.jpg" alt=""></a>
-                        <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
-                        <div class="catalog__item-label catalog__item-label-hit"><span>хит</span></div>
+                    <div class="catalog__item-top">
+                        <a class="catalog__item-img" href="#">
+                            <img src="assets/images/catalog-img2.jpg" alt="">
+                        </a>
+                        <div class="catalog__item-fav">
+                            <svg><use xlink:href="#like"></use></svg>
+                        </div>
+                        <div class="catalog__item-label catalog__item-label-hit">
+                            <span>хит</span>
+                        </div>
                     </div>
-                    <div class="catalog__item-tx"><a class="catalog__item-title" href="#">Клубника отборная ~ 250 г</a>
+                    <div class="catalog__item-tx">
+                        <a class="catalog__item-title" href="#">Клубника отборная ~ 250 г</a>
                         <div class="catalog__item-numb">1 шт (125 г)</div>
                         <div class="catalog__item-bottom">
                             <div class="catalog__item-info">
                                 <div class="catalog__item-price">
                                     <div class="catalog__item-price-old">50 руб</div>
                                     <div class="catalog__item-price-now">395 ₽</div>
-                                </div><a class="catalog__item-buy" href="#">купить<img src="assets/images/svg/cart.svg" alt=""></a>
-                            </div><a class="catalog__item-offer" href="#">5 предложений</a>
+                                </div>
+                                <a class="catalog__item-buy" href="#">
+                                    купить <img src="assets/images/svg/cart.svg" alt="">
+                                </a>
+                            </div>
+                            <a class="catalog__item-offer" href="#">
+                                5 предложений
+                            </a>
                         </div>
                     </div>
                 </div>

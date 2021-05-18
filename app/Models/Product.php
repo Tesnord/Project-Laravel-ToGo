@@ -59,6 +59,19 @@ class Product extends Model
         return $this->belongsToMany(Description::class);
     }
 
+    public function labels()
+    {
+        return $this->belongsToMany(Label::class);
+    }
+
+    public function getLabel()
+    {
+        return Label::query()
+            ->where('entity_type', '=', Label::class)
+            ->where('entity_id', '=', $this->getAttribute('id'))
+            ->get();
+    }
+
     /**
      * Позволяет искать товары по заданным словам
      *

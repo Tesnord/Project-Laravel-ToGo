@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,54 +21,6 @@ class Category extends Model
     /**
      * @return HasMany
      */
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-
-    /**
-     * @return int
-     */
-    public function getProductsCount(): int
-    {
-        $products_count = Product::query()
-            ->where('category_id', $this->getAttribute('id'))
-            ->count('id');
-
-        return $products_count;
-    }
-
-    /**
-     * @return int
-     */
-    public function getProductsCountRcsv(): int
-    {
-        $res_col = Category::with(['products', 'childrenRcsv', 'childrenRcsv.products'])
-            ->where('id', $this->getAttribute('id'))
-            ->get();
-
-        $res_arr = $res_col->toArray();
-
-        $res_flat = $this->flatten($res_arr);
-
-        $products = [];
-
-        foreach ($res_flat as $res_el) {
-            if (array_key_exists('category_id', $res_el)) {
-                $products[] = $res_el;
-            }
-        }
-
-        $products_ids = array_column($products, 'id');
-
-        $products_count = count($products_ids);
-
-        return $products_count;
-    }
-
-    /**
-     * @return HasMany
-     */
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
@@ -77,13 +31,87 @@ class Category extends Model
      */
     public function childrenRcsv()
     {
-        return $this->children()->with('childrenRcsv');
+        return $this->children()->with(['childrenRcsv']);
     }
 
-
-    public function icons()
+    /**
+     * @return HasMany
+     */
+    public function products()
     {
-        return $this->hasMany(CategoryIcon::class);
+        return $this->hasMany(Product::class, 'category_id');
+    }
+
+    public function getProductsRcsv()
+    {
+        $res_col = Category::query()
+            ->where('id', $this->id)
+            ->with(['childrenRcsv'])
+            ->get();
+
+        $res_arr = $res_col->toArray();
+
+        $res_flat = $this->flatten($res_arr);
+
+        $categories_ids = array_column($res_flat, 'id');
+
+        return Product::query()
+            ->whereIn('category_id', $categories_ids)
+            ->get();
+    }
+
+    public static function getByPath(string $path, int $parent_id = 0)
+    {
+        $slugs = explode('/', $path);
+
+        $category = Category::query()
+            ->where('parent_id', $parent_id)
+            ->where('slug_category', array_shift($slugs))
+            ->first();
+
+        if (empty($slugs)) {
+            return $category;
+        } else {
+            return static::getByPath(implode('/', $slugs), $category->id);
+        }
+    }
+
+    public function getLevel($level = 0)
+    {
+        $level++;
+
+        if ($this->parent_id === 0) {
+            return $level;
+        } else {
+            return Category::query()
+                ->where('id', $this->parent_id)
+                ->first()
+                ->getLevel($level);
+        }
+    }
+
+    public function getPath($slugs = [])
+    {
+        $slugs[] = $this->slug_category;
+
+        if ($this->parent_id === 0) {
+            $reversed = array_reverse($slugs);
+            return implode('/', $reversed);
+        } else {
+            return Category::query()
+                ->where('id', $this->parent_id)
+                ->first()
+                ->getPath($slugs);
+        }
+    }
+
+    public function getImages()
+    {
+
+        return File::query()
+            ->where('entity_type', '=', Category::class)
+            ->where('entity_id', '=', $this->getAttribute('id'))
+            ->get();
     }
 
     /**

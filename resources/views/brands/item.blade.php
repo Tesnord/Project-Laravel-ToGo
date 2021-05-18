@@ -5,12 +5,7 @@
     <div class="catalog-brand-title" style="background-image: url('{{ asset('assets/images/bg-top.jpg') }}')">
         <div class="container">
             <div class="catalog-brand-title__inner">
-                <div class="breadcrumb-block">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                        <li class="breadcrumb-item active">Freshop</li>
-                    </ol>
-                </div>
+                {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('brands.show') }}
             </div>
             <div class="catalog-brand-title__holder">
                 <div class="catalog-brand-title__main">

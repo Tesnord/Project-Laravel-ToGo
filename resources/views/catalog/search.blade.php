@@ -10,6 +10,7 @@
             </ol>
         </div>
     </div>
+    @if(count($products))
     <div class="title-main">
         <div class="container">
             <div class="title-main__inner">
@@ -28,15 +29,24 @@
         <div class="container">
             <div class="catalog__inner">
                 <div class="catalog__list">
-                    @if(count($products))
+
                         <div class="row">
                             @foreach($products as $product)
-                                <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
+                                @include('layouts.catalog.product')
+                                {{--<div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                                     <div class="catalog__item">
                                         <div class="catalog__item-top">
                                             <a class="catalog__item-img"
                                                href="{{ route('catalog.product', ['slug_product' => $product->slug_product]) }}">
-                                                <img src="{{ asset($product->preview_picture->src) }}" alt="">
+                                                @if($product->preview_picture !== null)
+                                                    <img
+                                                        src="{{ $product->preview_picture->src }}"
+                                                        alt="">
+                                                @else
+                                                    <img
+                                                        src="/assets/images/svg/logo.svg"
+                                                        alt="">
+                                                @endif
                                             </a>
                                             <div class="catalog__item-fav">
                                                 <svg>
@@ -69,7 +79,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--}}
                             @endforeach
                             @else
                                 <div class="tx">
@@ -79,7 +89,7 @@
                                             <div class="tx__text">
                                                 <div class="tx__title">Товар не найден</div>
                                                 <p>Простите, по вашему запросу товаров сейчас нет</p><a
-                                                    class="button button-secondary" href="#">вернуться на главную</a>
+                                                    class="button button-secondary" href="{{ route('home') }}">вернуться на главную</a>
                                             </div>
                                         </div>
                                     </div>

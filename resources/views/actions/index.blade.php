@@ -4,10 +4,7 @@
 
     <div class="breadcrumb-block">
         <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                <li class="breadcrumb-item active">Акции</li>
-            </ol>
+            {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('actions.index') }}
         </div>
     </div>
     <div class="title-main">

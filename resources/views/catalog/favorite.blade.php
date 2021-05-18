@@ -4,11 +4,7 @@
 
     <div class="breadcrumb-block">
         <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Главная</a></li>
-                <li class="breadcrumb-item"><a href="#">Каталог</a></li>
-                <li class="breadcrumb-item active">Избранное</li>
-            </ol>
+            {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('catalog.favorite') }}
         </div>
     </div>
     <div class="title-main">
@@ -25,7 +21,8 @@
                     <div class="catalog__list">
                         <div class="row">
                             @foreach($products as $product)
-                                <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
+                                @include('layouts.catalog.product')
+                                {{--<div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                                     <div class="catalog__item catalog__item-favorites">
                                         <div class="catalog__item-top"><a class="catalog__item-img" href="{{ route('catalog.product', ['slug_product' => $product->slug_product]) }}"><img
                                                     src="{{ asset($product->preview_picture->src) }}" alt=""></a>
@@ -42,7 +39,7 @@
                                             <div class="catalog__item-bottom">
                                                 <div class="catalog__item-info">
                                                     <div class="catalog__item-price">
-                                                        {{--<div class="catalog__item-price-old">50 руб</div>--}}
+                                                        --}}{{--<div class="catalog__item-price-old">50 руб</div>--}}{{--
                                                         <div class="catalog__item-price-now">{{ $product->price->value }} {{ $product->price->currency->value }}</div>
                                                     </div>
                                                     <a class="catalog__item-buy" href="#">купить<img
@@ -51,7 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--}}
                             @endforeach
                             {{--<div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
                                 <div class="catalog__item catalog__item-favorites">

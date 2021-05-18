@@ -4,7 +4,7 @@
 
     <div class="breadcrumb-block">
         <div class="container">
-            {{--{{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('product') }}--}}
+            {{--{{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('catalog.product', ['slug' => $product->slug_product]) }}--}}
         </div>
     </div>
     <div class="card-product">

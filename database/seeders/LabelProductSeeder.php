@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PriceSeeder extends Seeder
+class LabelProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +14,10 @@ class PriceSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 30; $i < 35; $i++) {
-            DB::table('prices')->insert([
-                'value' => rand(000, 999),
+        for ($i = 0; $i < 20; $i++)
+            DB::table('label_product')->insert([
                 'product_id' => $i,
-                'currency_id' => '1',
+                'label_id' => rand(1, 3),
             ]);
-        }
     }
 }

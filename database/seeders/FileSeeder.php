@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class FileSeeder extends Seeder
 {
@@ -15,12 +14,13 @@ class FileSeeder extends Seeder
      */
     public function run()
     {
-        for ($m = 1; $m < 10; $m++)
+        for ($m = 1; $m < 22; $m++)
             DB::table('files')->insert([
-                'src' => '/assets/images/icon-catalog' . ($m) . '.svg',
+                'src' => '/assets/images/catalog-img' . ($m) . '.jpg',
+                'entity_type' => 'App\Models\Product',
                 'entity_id' => $m,
-                'entity_type' => 'App\Models\CategoryIcon'
             ]);
 
     }
+// catalog-img
 }

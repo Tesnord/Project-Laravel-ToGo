@@ -30,10 +30,10 @@ Route::prefix('brand')->group(function () {
 Route::prefix('catalog')->group(function () {
     Route::get('/search', 'ProductController@search')->name('catalog.search');
     Route::get('/favorite', 'ProductController@favorite')->name('catalog.favorite');
-    Route::get('/{slug_category}', 'ProductController@index')->name('catalog.index');
-    Route::get('/category/{slug_category}', 'ProductController@category')->name('catalog.category');
-    Route::get('/brand/{slug_brand}', 'ProductController@brand')->name('catalog.brand');
     Route::get('/product/{slug_product}', 'ProductController@show')->name('catalog.product');
+    Route::get('/{path}/', 'ProductController@index')
+        ->where('path', '[a-zA-Z0-9\/-]+')
+        ->name('catalog.index');
 });
 
 Route::prefix('basket')->group(function () {

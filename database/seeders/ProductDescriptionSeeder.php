@@ -14,9 +14,9 @@ class ProductDescriptionSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 10; $i++)
-            DB::table('product_description')->insert([
-                'product_id' => rand(1, 5),
+        for ($i = 0; $i < 40; $i++)
+            DB::table('description_product')->insert([
+                'product_id' => rand(6, 34),
                 'description_id' => rand(1, 3),
             ]);
     }
