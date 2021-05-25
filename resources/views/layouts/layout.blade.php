@@ -77,7 +77,7 @@
                     <span class="header__menu-icon-tit">баллы</span></a>
                 <a class="header__menu-icon-item" href="{{ route('catalog.favorite') }}">
                     <img src="{{ asset('/assets/images/svg/icon-menu4.svg') }}" alt="">
-                    <span class="header__menu-icon-notif">4</span>
+                    <span class="header__menu-icon-notif" data-role="favorite_counter">{{ count($GLOBALS["favorites"]) }}</span>
                     <span class="header__menu-icon-tit">избранное</span>
                 </a>
             </div>
@@ -137,7 +137,7 @@
                                 class="header__bottom-info-notif">4</span></a><a class="header__bottom-info-item"
                                                                                  href="{{ route('catalog.favorite') }}"><img
                                 src="{{ asset('/assets/images/svg/icon-header2.svg') }}" alt=""> избранное<span
-                                class="header__bottom-info-notif">4</span></a><a
+                                class="header__bottom-info-notif" data-role="favorite_counter">{{ count($GLOBALS["favorites"]) }}</span></a><a
                             class="header__bottom-info-item header__bottom-info-item-cart"
                             href="{{ route('basket.index') }}"><img
                                 src="{{ asset('/assets/images/svg/icon-header3.svg') }}" alt=""> корзина<span
@@ -224,4 +224,6 @@
         src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script type="text/javascript" src="{{ asset('vendors/slick/slick.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/external.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 </html>

@@ -4,25 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Exception;
 use Illuminate\Http\Request;
+use App\Utils\MarketFavorites;
 
 class ProductController extends Controller
 {
     public function index(string $path = '/')
     {
+        MarketFavorites::getInstance();
         $category = Category::getByPath($path);
+        // dd(Category::getPath());
+        // dd($category->getBreadcrumbs());
 
         if ($category->getLevel() < 2) {
             return view('catalog.index', [
                 'category' => $category,
                 'sub_categories' => $category->children,
-                'products' => $category->getProductsRcsv()
+                'products' => $category->getProductsRcsv(),
+                'breadcrumbs' => $category->getBreadcrumbs(),
             ]);
         } else {
             return view('catalog.category', [
                 'category' => $category,
                 'sub_categories' => $category->children,
-                'products' => $category->getProductsRcsv()
+                'products' => $category->getProductsRcsv(),
+                'breadcrumbs' => $category->getBreadcrumbs(),
             ]);
         }
     }
@@ -45,15 +52,19 @@ class ProductController extends Controller
         ]);
     }
 
-    //{"market_favorites":[1,2,3,4]}    -  %7B%22favorites%22%3A%5B1%2C2%2C3%2C4%5D%7D
-    //{"market_favorites":[]}           -  %7B%22favorites%22%3A%5B%5D%7D
+    //{"favorites":[1,2,3,4]}    -  %7B%22favorites%22%3A%5B1%2C2%2C3%2C4%5D%7D
+    //{"favorites":[]}           -  %7B%22favorites%22%3A%5B%5D%7D
     public function favorite()
     {
-        $cookie_market_favorites = $_COOKIE["market_favorites"];
-        $cookie_market_favorites_obj = json_decode($cookie_market_favorites);
-        $favorites = $cookie_market_favorites_obj->favorites;
-        $q_favorites = Product::query()->find($favorites)->all();
-
+        try {
+            /*$cookie_market_favorites = $_COOKIE["market_favorites"];
+            $cookie_market_favorites_obj = json_decode($cookie_market_favorites);
+            $favorites = $cookie_market_favorites_obj->favorites;*/
+            MarketFavorites::getInstance();
+            $q_favorites = Product::query()->find($GLOBALS['favorites'])->all();
+        } catch (Exception $exception) {
+            $q_favorites = [];
+        }
         return view('catalog.favorite', array(
             "products" => $q_favorites
         ));
@@ -70,3 +81,4 @@ class ProductController extends Controller
         ]);
     }
 }
+

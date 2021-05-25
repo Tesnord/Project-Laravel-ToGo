@@ -76,6 +76,23 @@ class Category extends Model
         }
     }
 
+    public function getBreadcrumbs($breadcrumbs = [])
+    {
+        $breadcrumbs[] = [
+            'name' => $this->name,
+            'slug_category' => $this->getPath(),
+        ];
+
+        if ($this->parent_id === 0) {
+            return array_reverse($breadcrumbs);
+        } else {
+            return Category::query()
+                ->where('id', $this->parent_id)
+                ->first()
+                ->getBreadcrumbs($breadcrumbs);
+        }
+    }
+
     public function getLevel($level = 0)
     {
         $level++;

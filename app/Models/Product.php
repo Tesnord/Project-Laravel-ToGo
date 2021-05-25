@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Utils\MarketFavorites;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +14,6 @@ class Product extends Model
 
     public function getImages()
     {
-
         return File::query()
             ->where('entity_type', '=', Product::class)
             ->where('entity_id', '=', $this->getAttribute('id'))
@@ -61,7 +62,10 @@ class Product extends Model
 
     public function labels()
     {
-        return $this->belongsToMany(Label::class);
+        if ($label = $this->belongsToMany(Label::class)->get()->first()) {
+            return $label->toArray()['value'];
+        }
+        return "";
     }
 
     public function getLabel()
@@ -72,6 +76,16 @@ class Product extends Model
             ->get();
     }
 
+    public function isFavorite()
+    {
+        try {
+            $q_favorites = MarketFavorites::getInstance()->isFavorite($this->getAttribute('id'));
+        } catch (Exception $exception) {
+            $q_favorites = [];
+        }
+        return $q_favorites;
+    }
+
     /**
      * Позволяет искать товары по заданным словам
      *
@@ -79,7 +93,8 @@ class Product extends Model
      * @param string $search
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearch($query, $search) {
+    public function scopeSearch($query, $search)
+    {
         // обрезаем поисковый запрос
         $search = iconv_substr($search, 0, 64);
         // удаляем все, кроме букв и цифр

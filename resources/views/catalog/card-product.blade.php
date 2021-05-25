@@ -52,19 +52,21 @@
                         <div class="card-product__description-numb">{{ $product->weight }} г</div>
                     </div>
                     <div class="card-product__description-btns">
-                        <form action="{{ route('basket.add', ['id' => $product->id]) }}"
-                              method="post" class="form-inline">
-                            <button class="button button-primary">купить<img
-                                    src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></button>
-                            @csrf
-                            <a class="button button-all" href="#">в избранное<img
-                                    src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>
-                        </form>
-                        {{-- @csrf
-                         <a class="button button-primary" href="{{ route('basket.add', ['id' => $product->id]) }}">купить<img
-                             src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
-                     <a class="button button-all" href="#">в избранное<img
-                             src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>--}}
+                        <div class="form-inline">
+                            <a class="button button-primary">купить<img
+                                    src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
+                            {{--<a class="button button-all event-button to-favorite" href="#" data-product-id="{{ $product->id  }}">в избранное<img
+                                    src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>--}}
+                            @if(empty($product->isFavorite()))
+                                <a class="button button-all" href="#"
+                                   data-product-id="{{ $product->id  }}">в избранное<img
+                                        src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>
+                            @else
+                                <a class="button button-all" href="#"
+                                   data-product-id="{{ $product->id  }}">в избранное<img
+                                        src="{{ asset('assets/images/svg/like2.svg') }}" alt=""></a>
+                            @endif
+                        </div>
                     </div>
                     <a class="card-product__description-link" href="#"><img
                             src="{{ asset('assets/images/svg/icon1.svg') }}" alt=""><span>Получайте товары по более привлекательной цене</span></a>

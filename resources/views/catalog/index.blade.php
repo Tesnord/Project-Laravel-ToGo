@@ -3,7 +3,8 @@
 @section('content')
         <div class="breadcrumb-block">
             <div class="container">
-                {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('catalog.index', $category->name) }}
+                {{ \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::render('catalog.index', $category) }}
+
             </div>
         </div>
         <div class="title-main">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Utils\MarketFavorites;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -21,6 +22,7 @@ class BasketController extends Controller
      */
     public function index()
     {
+        MarketFavorites::getInstance();
         $products = $this->basket->products;
         return view('basket.index', compact('products'));
     }
@@ -30,6 +32,7 @@ class BasketController extends Controller
      */
     public function checkout()
     {
+        MarketFavorites::getInstance();
         return view('basket.checkout');
     }
 

@@ -1,5 +1,6 @@
 <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
-    <div class="catalog__item catalog__item-bt">
+    <div class="catalog__item {{ $product->isFavorite() ? 'catalog__item-favorites' : '' }}"
+         data-product-id="{{ $product->id  }}">
         <div class="catalog__item-top">
             <a class="catalog__item-img"
                href="{{ route('catalog.product', ['slug_product' => $product->slug_product]) }}">
@@ -18,11 +19,7 @@
                     <use xlink:href="#like"></use>
                 </svg>
             </div>
-            @foreach($product->labels as $labels)
-                @foreach($labels->getLabel() as $label)
-                    {!! $label->value !!}
-                @endforeach
-            @endforeach
+            {!! $product->labels() !!}
         </div>
         <div class="catalog__item-tx">
             <a class="catalog__item-title"
@@ -47,6 +44,7 @@
 
                 </div>
                 {{--@if()
+                для предложений class catalog__item + "catalog__item-bt"
                     <a class="catalog__item-offer" href="#">5 предложений</a>
                 @endif--}}
             </div>

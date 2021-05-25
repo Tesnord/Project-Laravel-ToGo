@@ -58,20 +58,17 @@ Breadcrumbs::for('home', function ($trail) {
     // Home > Catalog
     Breadcrumbs::for('catalog.index', function ($trail, $category) {
         $trail->parent('home');
-        $trail->push($category, route('catalog.index', ['path' => $category]));
+        $categories = $category->getBreadcrumbs();
+        foreach ($categories as $cat) {
+            $trail->push($cat['name'], route('catalog.index', ['path' => $cat['slug_category']]));
+        }
     });
 
-        // Home > Catalog > Category {path}
-        Breadcrumbs::for('catalog.category', function ($trail, $category) {
+        // Home > Catalog > Category {path} > Product
+        Breadcrumbs::for('catalog.product', function ($trail, $product) {
             $trail->parent('catalog.index');
-            $trail->push($category, route('catalog.index', ['path' => $category]));
+            $trail->push($product->title, route('catalog.product', ['slug' => $product->slug_product]));
         });
-
-            // Home > Catalog > Category {path} > Product
-            Breadcrumbs::for('catalog.product', function ($trail, $product) {
-                $trail->parent('catalog.index');
-                $trail->push($product->title, route('catalog.product', ['slug' => $product->slug_product]));
-            });
 
 
 
