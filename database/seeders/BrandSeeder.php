@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class FileSeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +15,9 @@ class FileSeeder extends Seeder
     public function run()
     {
         for ($m = 1; $m <= 15; $m++)
-            DB::table('files')->insert([
-                'src' => '/assets/images/action-img' . rand(1, 4) . '.jpg',
-                'entity_type' => 'App\Models\Action',
-                'entity_id' => $m,
+            DB::table('brands')->insert([
+                'name' => 'brand'. $m,
+                'firm' => 'ООО «Мир здоровья»',
             ]);
-
     }
-// catalog-img
 }

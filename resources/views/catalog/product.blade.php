@@ -39,7 +39,11 @@
                 <div class="card-product__description">
                     <div class="card-product__description-top">
                         <div class="card-product__description-top-item">Артикул: {{ $product->vendor_code }}</div>
-                        <div class="card-product__description-top-item">В наличии</div>
+                        @if($availability == 1)
+                            <div class="card-product__description-top-item">В наличии</div>
+                        @else
+                            <div class="card-product__description-top-item">Нет в наличии</div>
+                        @endif
                     </div>
                     <h1>{{ $product->title }}</h1>
                     <p>{{ $product->desc_title }}</p>
@@ -74,23 +78,22 @@
                 <div class="card-product__all">
                     <div class="card-product__all-reviews">
                         <div class="card-product__all-reviews-rating">
-                            <div class="card-product__all-reviews-rating-now">3,6</div>
-                            <div class="card-product__all-reviews-rating-all">(3 отзыва)</div>
+                            <div class="card-product__all-reviews-rating-now">{{ round($rating, 1) }}</div>
+                            <div class="card-product__all-reviews-rating-all">({{ $count }} отзыва)</div>
                         </div>
                         <div class="card-product__all-reviews-list">
-                            <div class="card-product__all-reviews-list-item-act"><img
-                                    src="{{asset('assets/images/svg/rating-active.svg')}}" alt=""></div>
-                            <div class="card-product__all-reviews-list-item-act"><img
-                                    src="{{asset('assets/images/svg/rating-active.svg')}}" alt=""></div>
-                            <div class="card-product__all-reviews-list-item-act"><img
-                                    src="{{asset('assets/images/svg/rating-active.svg')}}" alt=""></div>
-                            <div class="card-product__all-reviews-list-item"><img
-                                    src="{{asset('assets/images/svg/rating-active.svg')}}" alt=""></div>
-                            <div class="card-product__all-reviews-list-item"><img
-                                    src="{{asset('assets/images/svg/rating.svg')}}" alt=""></div>
+                            @for($i = 0.0; $i < 5.0; $i++)
+                                @if($rating - $i >= 0.5)
+                                    <div class="card-product__all-reviews-list-item-act"><img
+                                            src="{{asset('assets/images/svg/rating-active.svg')}}" alt=""></div>
+                                @else
+                                    <div class="card-product__all-reviews-list-item"><img
+                                            src="{{asset('assets/images/svg/rating.svg')}}" alt=""></div>
+                                @endif
+                            @endfor
                         </div>
                     </div>
-                    <div class="card-product__all-logo"><img src="{{asset('assets/images/logo-card.png')}}" alt="">
+                    <div class="card-product__all-logo"><a href="{{ route('brands.show') }}"><img src="{{asset('assets/images/logo-card.png')}}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -221,6 +224,7 @@
                                                                     </div>
                                                                 @endif
                                                             @endfor
+
                                                         </div>
                                                         <div
                                                             class="card-product__reviews-data">{{ $review->created_at->format('d.m.Y') }}</div>
@@ -235,10 +239,10 @@
                                                                    data-fancybox="rev1"
                                                                    style="background-image: url({{ asset($image->src) }})"></a>
                                                             @endforeach
-                                                                    <div
-                                                                    class="card-product__reviews-list-img card-product__reviews-list-img-all"
-                                                                    style="background-image: url({{ asset($image->src) }})">
-                                                                    <span>еще 3</span></div>
+                                                            {{--<div
+                                                            class="card-product__reviews-list-img card-product__reviews-list-img-all"
+                                                            style="background-image: url({{ asset($image->src) }})">
+                                                            <span>еще 3</span></div>--}}
 
 
                                                         </div>

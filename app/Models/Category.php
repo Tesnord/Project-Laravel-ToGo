@@ -42,7 +42,7 @@ class Category extends Model
         return $this->hasMany(Product::class, 'category_id');
     }
 
-    public function getProductsRcsv()
+    public function qProductsRcsv()
     {
         $res_col = Category::query()
             ->where('id', $this->id)
@@ -56,8 +56,7 @@ class Category extends Model
         $categories_ids = array_column($res_flat, 'id');
 
         return Product::query()
-            ->whereIn('category_id', $categories_ids)
-            ->get();
+            ->whereIn('category_id', $categories_ids);
     }
 
     public static function getByPath(string $path, int $parent_id = 0)

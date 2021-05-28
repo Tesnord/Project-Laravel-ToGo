@@ -26,4 +26,16 @@ class HomeController extends Controller
         MarketFavorites::getInstance();
         return view('policy');
     }
+
+    public function subscribeIndex()
+    {
+        MarketFavorites::getInstance();
+        return view('subscribe.index');
+    }
+
+    public function subscribeShow()
+    {
+        MarketFavorites::getInstance();
+        return view('subscribe.show');
+    }
 }

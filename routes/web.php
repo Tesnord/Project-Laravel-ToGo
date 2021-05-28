@@ -16,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/policy', 'HomeController@policy')->name('policy');
 
+Route::prefix('subscribe')->group(function () {
+    Route::get('/', 'HomeController@subscribeIndex')->name('subscribe.index');
+    Route::get('/item', 'HomeController@subscribeShow')->name('subscribe.show');
+});
+
 Route::prefix('action')->group(function () {
     Route::get('/', 'ActionsController@index')->name('actions.index');
-    Route::get('/item', 'ActionsController@show')->name('actions.show');
+    Route::get('/{slug_action}', 'ActionsController@show')->name('actions.show');
 });
 
 Route::prefix('brand')->group(function () {

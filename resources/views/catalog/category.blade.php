@@ -12,7 +12,7 @@
         <div class="container">
             <div class="title-main__inner">
                 <h1>{{ $category->name }}</h1>
-                <div class="title-main__numb">{{ $category->getProductsRcsv()->count() }}</div>
+                <div class="title-main__numb">{{ $category->qProductsRcsv()->get()->count() }}</div>
             </div>
         </div>
     </div>
@@ -175,24 +175,7 @@
                             @include('layouts.catalog.product')
                         @endforeach
                     </div>
-                    <div class="pagination-bl">
-                        <ul class="pagination">
-                            <li class="page-item prev"><a class="page-link" href="#"><span
-                                        class="tx">Предыдущая</span><span class="arrow"><img
-                                            src="{{ asset('assets/images/svg/arrow2.svg') }}" alt=""></span></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item mob"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><span class="page-link">...</span></li>
-                            <li class="page-item"><a class="page-link" href="#">22</a></li>
-                            <li class="page-item next"><a class="page-link" href="#"><span
-                                        class="tx">следующая</span><span class="arrow"><img
-                                            src="{{ asset('assets/images/svg/arrow2.svg') }}" alt=""></span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    {{ $products->links('vendor.pagination.bootstrap-4') }}
                 </div>
             </div>
         </div>

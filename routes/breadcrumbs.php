@@ -37,7 +37,7 @@ Breadcrumbs::for('home', function ($trail) {
         $trail->push('Бренды', route('brands.index'));
     });
 
-        // Home > Brand
+        // Home > Brands > Brand
         Breadcrumbs::for('brands.show', function ($trail) {
             $trail->parent('home');
             $trail->push('Название бренда', route('brands.show'));
@@ -49,10 +49,10 @@ Breadcrumbs::for('home', function ($trail) {
         $trail->push('Акции', route('actions.index'));
     });
 
-        // Home > Action
-        Breadcrumbs::for('actions.show', function ($trail) {
+        // Home > Actions > Action
+        Breadcrumbs::for('actions.show', function ($trail, $action) {
             $trail->parent('actions.index');
-            $trail->push('Название акции', route('actions.show'));
+            $trail->push($action->name, route('actions.show', $action));
         });
 
     // Home > Catalog

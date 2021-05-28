@@ -17,7 +17,7 @@ class MarketFavorites
             {
                 $GLOBALS["favorites"] = $market_favorites["favorites"];
             }
-        } catch (\JsonException $e) {
+        } catch (\Exception $e) {
             $GLOBALS["favorites"] = array();
         }
     }

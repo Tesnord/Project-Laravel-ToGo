@@ -17,134 +17,22 @@
     <div class="actions">
         <div class="container">
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img1.jpg') }})"><span class="actions__item-label">еще 7 дней</span></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
+                @foreach($actions as $action)
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="actions__item">
+                            @foreach($action->getImages() as $image)
+                                <a class="actions__item-img" href="{{ route('actions.show', $action->slug_action) }}" style="background-image: url({{ asset($image->src) }})">
+                                    <span class="actions__item-label">еще 7 дней</span>
+                                </a>
+                            @endforeach
+                            <div class="actions__item-tx">
+                                <div class="actions__item-data">с {{ $start }} по {{ $finish }}</div>
+                                <a class="actions__item-title" href="{{ route('actions.show', $action->slug_action) }}">{{ $action->name }}</a>
+                                <div class="actions__item-firm">ООО «Мир здоровья»</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img2.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img3.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img4.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img1.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img2.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img3.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img4.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img1.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img2.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img3.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img4.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img1.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img2.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img3.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                    <div class="actions__item"><a class="actions__item-img" href="{{ route('actions.show') }}" style="background-image: url({{ asset('assets/images/action-img4.jpg') }})"></a>
-                        <div class="actions__item-tx">
-                            <div class="actions__item-data">с 2 ноября по 4 апреля</div><a class="actions__item-title" href="{{ route('actions.show') }}">Неделя черных суперцен</a>
-                            <div class="actions__item-firm">ООО «Мир здоровья»</div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="pagination-bl">
                 <ul class="pagination">

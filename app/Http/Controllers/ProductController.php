@@ -14,22 +14,20 @@ class ProductController extends Controller
     {
         MarketFavorites::getInstance();
         $category = Category::getByPath($path);
-        // dd(Category::getPath());
-        // dd($category->getBreadcrumbs());
 
         if ($category->getLevel() < 2) {
+            $products = $category->qProductsRcsv()->get();
             return view('catalog.index', [
                 'category' => $category,
                 'sub_categories' => $category->children,
-                'products' => $category->getProductsRcsv(),
-                'breadcrumbs' => $category->getBreadcrumbs(),
+                'products' => $products,
             ]);
         } else {
+            $products = $category->qProductsRcsv()->paginate(1);
             return view('catalog.category', [
                 'category' => $category,
                 'sub_categories' => $category->children,
-                'products' => $category->getProductsRcsv(),
-                'breadcrumbs' => $category->getBreadcrumbs(),
+                'products' => $products,
             ]);
         }
     }
@@ -41,25 +39,37 @@ class ProductController extends Controller
         $price = $product->price->value;
         $currency = $product->price->currency->value;
         $reviews = $product->reviews;
+        $availability = $product->availability;
 
 
-        return view('catalog.card-product', [
+        if ($reviews) {
+            $rating = 0;
+            $count = count($reviews);
+            foreach ($reviews as $review) {
+                $rating += $review['rating'];
+            }
+            if ($count > 0) {
+                $rating = $rating / $count;
+            } else {
+                $rating = 0;
+            }
+        }
+
+        return view('catalog.product', [
             'product' => $product,
             'reviews' => $reviews,
             'properties_values' => $properties_values,
             'price' => $price,
             'currency' => $currency,
+            'count' => $count,
+            'rating' => $rating,
+            'availability' => $availability,
         ]);
     }
 
-    //{"favorites":[1,2,3,4]}    -  %7B%22favorites%22%3A%5B1%2C2%2C3%2C4%5D%7D
-    //{"favorites":[]}           -  %7B%22favorites%22%3A%5B%5D%7D
     public function favorite()
     {
         try {
-            /*$cookie_market_favorites = $_COOKIE["market_favorites"];
-            $cookie_market_favorites_obj = json_decode($cookie_market_favorites);
-            $favorites = $cookie_market_favorites_obj->favorites;*/
             MarketFavorites::getInstance();
             $q_favorites = Product::query()->find($GLOBALS['favorites'])->all();
         } catch (Exception $exception) {
@@ -72,6 +82,7 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
+        MarketFavorites::getInstance();
         $search = $request->input('query');
         $query = Product::search($search);
         $products = $query->paginate(100)->withQueryString();
