@@ -29,113 +29,32 @@
         </div>
     </div>
 </div>
-<div class="catalog-min">
-    <div class="container">
-        <div class="catalog-min__top">
-            <div class="catalog-min__top-title"><img src="{{ asset('assets/images/svg/icon-catalog1.svg') }}" alt=''> Специальные предложения</div><a class="button button-all" href="#"><span>смотреть</span> +75 еще</a>
-        </div>
-        <div class="row">
-            <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
-                <div class="catalog__item catalog__item-bt">
-                    <div class="catalog__item-top"><a class="catalog__item-img" href=""><img src="{{ asset('assets/images/catalog-img2.jpg') }}" alt=""></a>
-                        <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
-                        <div class="catalog__item-label catalog__item-label-hit"><span>хит</span></div>
-                    </div>
-                    <div class="catalog__item-tx"><a class="catalog__item-title" href="">Клубника отборная ~ 250 г</a>
-                        <div class="catalog__item-numb">1 шт (125 г)</div>
-                        <div class="catalog__item-bottom">
-                            <div class="catalog__item-info">
-                                <div class="catalog__item-price">
-                                    <div class="catalog__item-price-old">50 руб</div>
-                                    <div class="catalog__item-price-now">395 ₽</div>
-                                </div><a class="catalog__item-buy" href="#">купить<img src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
-                            </div><a class="catalog__item-offer" href="#">5 предложений</a>
-                        </div>
-                    </div>
+
+@foreach($categories as $category)
+    <div class="catalog-min">
+        <div class="container">
+            <div class="catalog-min__top">
+                <div class="catalog-min__top-title">
+                    @foreach($category->getImages() as $image)
+                        <img src="{{ asset($image->src) }}" alt=''>
+                    @endforeach
+                    {{ $category->name }}
                 </div>
+                <a class="button button-all"
+                   href="{{ route('catalog.index', ['path' => $category->getPath()]) }}">
+                    смотреть еще
+                </a>
             </div>
-            <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
-                <div class="catalog__item catalog__item-bt">
-                    <div class="catalog__item-top"><a class="catalog__item-img" href="#"><img src="{{ asset('assets/images/catalog-img3.jpg') }}" alt=""></a>
-                        <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
-                        <div class="catalog__item-label catalog__item-label-new"><span>NEW</span></div>
-                    </div>
-                    <div class="catalog__item-tx"><a class="catalog__item-title" href="#">Мандарины Абхазские ~ 500 гр.</a>
-                        <div class="catalog__item-numb">0.5 кг</div>
-                        <div class="catalog__item-bottom">
-                            <div class="catalog__item-info">
-                                <div class="catalog__item-price">
-                                    <div class="catalog__item-price-now">135 ₽</div>
-                                </div>
-                                <div class="catalog__item-amount">
-                                    <input type="text" value="1"><span class="up"><img src="{{ asset('assets/images/svg/plus.svg') }}" alt=""></span><span class="down"><img src="{{ asset('assets/images/svg/minus.svg') }}" alt=""></span>
-                                </div>
-                            </div><a class="catalog__item-offer" href="#">уникальный товар</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
-                <div class="catalog__item catalog__item-bt catalog__item-favorites">
-                    <div class="catalog__item-top"><a class="catalog__item-img" href="#"><img src="{{ asset('assets/images/catalog-img4.jpg') }}" alt=""></a>
-                        <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
-                        <div class="catalog__item-label catalog__item-label-sale"><span>30%</span></div>
-                    </div>
-                    <div class="catalog__item-tx"><a class="catalog__item-title" href="#">Манго Кео Вьетнам ~ 350 г</a>
-                        <div class="catalog__item-numb">1 шт (125 г)</div>
-                        <div class="catalog__item-bottom">
-                            <div class="catalog__item-info">
-                                <div class="catalog__item-price">
-                                    <div class="catalog__item-price-old">50 ₽</div>
-                                    <div class="catalog__item-price-now">45 ₽</div>
-                                </div><a class="catalog__item-buy" href="#">купить<img src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
-                            </div><a class="catalog__item-offer" href="#">1 предложение</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
-                <div class="catalog__item catalog__item-bt">
-                    <div class="catalog__item-top"><a class="catalog__item-img" href="#"><img src="{{ asset('assets/images/catalog-img5.jpg') }}" alt=""></a>
-                        <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
-                        <div class="catalog__item-label catalog__item-label-sale"><span>30%</span></div>
-                    </div>
-                    <div class="catalog__item-tx"><a class="catalog__item-title" href="#">Помидоры Узбекские сладкие ~ 500 г</a>
-                        <div class="catalog__item-numb">1 шт (125 г)</div>
-                        <div class="catalog__item-bottom">
-                            <div class="catalog__item-info">
-                                <div class="catalog__item-price">
-                                    <div class="catalog__item-price-old">50 ₽</div>
-                                    <div class="catalog__item-price-now">450 ₽</div>
-                                </div><a class="catalog__item-buy" href="#">купить<img src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
-                            </div><a class="catalog__item-offer" href="#">3 предложение</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2-1 col-lg-3 col-md-4 col-sm-6">
-                <div class="catalog__item catalog__item-bt">
-                    <div class="catalog__item-top"><a class="catalog__item-img" href="#"><img src="{{ asset('assets/images/catalog-img6.jpg') }}" alt=""></a>
-                        <div class="catalog__item-fav"><svg><use xlink:href="#like"></use></svg></div>
-                        <div class="catalog__item-label catalog__item-label-sale"><span>30%</span></div>
-                    </div>
-                    <div class="catalog__item-tx"><a class="catalog__item-title" href="#">Авокадо Хасс ~ 2 шт. в упаковке 350 г</a>
-                        <div class="catalog__item-numb">1 шт (125 г)</div>
-                        <div class="catalog__item-bottom">
-                            <div class="catalog__item-info">
-                                <div class="catalog__item-price">
-                                    <div class="catalog__item-price-old">50 ₽</div>
-                                    <div class="catalog__item-price-now">45 ₽</div>
-                                </div><a class="catalog__item-buy" href="#">купить<img src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
-                            </div><a class="catalog__item-offer" href="#">5 предложение</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row">
+                @foreach($category->qProductsRcsv()->paginate(5) as $product)
+                    @include('layouts.catalog.product')
+                @endforeach
             </div>
         </div>
     </div>
-</div>
-<div class="catalog-min">
+@endforeach
+
+{{--<div class="catalog-min">
     <div class="container">
         <div class="catalog-min__top">
             <div class="catalog-min__top-title"><img src="{{ asset('assets/images/svg/icon-catalog2.svg') }}" alt=''> Наши боксы</div><a class="button button-all" href="#"><span>смотреть</span> +75 еще</a>
@@ -766,7 +685,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>--}}
 <div class="delivery">
     <div class="container">
         <div class="row">

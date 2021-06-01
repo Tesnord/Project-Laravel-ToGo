@@ -15,6 +15,24 @@ class Brand extends Model
             ->get();
     }
 
+    public function getImagesLabel()
+    {
+        return File::query()
+            ->where('entity_var', '=', Brand::class)
+            ->where('entity_id', '=', $this->getAttribute('id'))
+            ->get();
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function promotions()
+    {
+        return $this->hasMany(Promotions::class);
+    }
+
 
 
     use HasFactory;

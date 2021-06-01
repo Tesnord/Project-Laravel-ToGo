@@ -93,7 +93,7 @@
                             @endfor
                         </div>
                     </div>
-                    <div class="card-product__all-logo"><a href="{{ route('brands.show') }}"><img src="{{asset('assets/images/logo-card.png')}}" alt=""></a>
+                    <div class="card-product__all-logo"><a href="{{ route('brands.show', $product->brand->slug_brand) }}"><img src="{{asset('assets/images/logo-card.png')}}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -249,6 +249,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                            <div class="card-product__reviews-btn js-card-product-reviews">смотреть +75 еще</div>
                                         </div>
                                     </div>
                                     <div class="card-product__right">
@@ -361,6 +362,6 @@
             </div>
         </div>
     </div>
-    @include('layouts.catalog-min')
+    @include('layouts.catalog.catalog-min')
 
 @endsection

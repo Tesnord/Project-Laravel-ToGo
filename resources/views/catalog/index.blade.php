@@ -31,7 +31,7 @@
                         </a>
                     </div>
                     <div class="row">
-                        @foreach($sub_category->qProductsRcsv()->get() as $product)
+                        @foreach($sub_category->qProductsRcsv()->paginate(20) as $product)
                             @include('layouts.catalog.product')
                         @endforeach
                     </div>

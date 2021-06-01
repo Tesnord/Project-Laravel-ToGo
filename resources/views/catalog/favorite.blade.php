@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        @include('layouts.catalog-min')
+        @include('layouts.catalog.catalog-min')
     @endif
 
 @endsection

@@ -15,6 +15,5 @@
         </div>
     </div>
 </div>
-@include('layouts.catalog-min')
 
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class ActionSeeder extends Seeder
+class PromotionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,8 +16,8 @@ class ActionSeeder extends Seeder
     public function run()
     {
         for ($m = 1; $m <= 15; $m++) {
-            DB::table('actions')->insert([
-                'name' => 'action ' . $m,
+            DB::table('promotions')->insert([
+                'name' => 'promotion ' . $m,
                 'start' => Carbon::create('2020', '05', '1')->format('d/M'),
                 'finish' => Carbon::create('2020', '06', '15'),
                 'description' => '<p>Хорошее и натуральное спелое манго, которое будет сочиться и будет обладать
@@ -30,7 +30,7 @@ class ActionSeeder extends Seeder
                                     после фито-санитарного контроля в Москве, сами везем на нашу розничную точку и на
                                     доставки! Мы уверены в том, что они ничем не обработаны, потому что видим
                                     естественном цикле.</p>',
-                'slug_action' => 'action-' . $m,
+                'slug_action' => 'promotion-' . $m,
             ]);
         }
     }

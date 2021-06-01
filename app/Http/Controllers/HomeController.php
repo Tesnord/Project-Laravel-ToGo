@@ -15,10 +15,14 @@ class HomeController extends Controller
         $menu_categories = Category::query()
             ->where('parent_id', 0)
             ->get();
+        $categories = Category::query()
+            ->where('parent_id', 0)
+            ->paginate(7);
 
-        return view('home', [
-            'menu_categories' => $menu_categories,
-        ]);
+            return view('home', [
+                'menu_categories' => $menu_categories,
+                'categories' => $categories,
+            ]);
     }
 
     public function policy()

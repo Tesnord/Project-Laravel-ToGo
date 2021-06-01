@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use App\Models\Product;
+use App\Utils\MarketFavorites;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use League\Flysystem\Exception;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -36,6 +38,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        MarketFavorites::getInstance();
         $this->reportable(function (Throwable $e) {
             //
         });

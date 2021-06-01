@@ -35,12 +35,12 @@ class ProductController extends Controller
     public function show($slug_product)
     {
         $product = Product::query()->where('slug_product', '=', $slug_product)->first();
+        $offer = Product::query()->paginate(5);
         $properties_values = $product->properties_values;
         $price = $product->price->value;
         $currency = $product->price->currency->value;
         $reviews = $product->reviews;
         $availability = $product->availability;
-
 
         if ($reviews) {
             $rating = 0;
@@ -64,6 +64,7 @@ class ProductController extends Controller
             'count' => $count,
             'rating' => $rating,
             'availability' => $availability,
+            'offer' => $offer,
         ]);
     }
 
@@ -72,11 +73,13 @@ class ProductController extends Controller
         try {
             MarketFavorites::getInstance();
             $q_favorites = Product::query()->find($GLOBALS['favorites'])->all();
+            $offer = Product::query()->paginate(5);
         } catch (Exception $exception) {
             $q_favorites = [];
         }
         return view('catalog.favorite', array(
-            "products" => $q_favorites
+            'products' => $q_favorites,
+            'offer' => $offer,
         ));
     }
 
@@ -86,9 +89,11 @@ class ProductController extends Controller
         $search = $request->input('query');
         $query = Product::search($search);
         $products = $query->paginate(100)->withQueryString();
+        $offer = Product::query()->paginate(5);
         return view('catalog.search', [
             'products' => $products,
             'search' => $search,
+            'offer' => $offer,
         ]);
     }
 }

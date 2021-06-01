@@ -38,21 +38,21 @@ Breadcrumbs::for('home', function ($trail) {
     });
 
         // Home > Brands > Brand
-        Breadcrumbs::for('brands.show', function ($trail) {
-            $trail->parent('home');
-            $trail->push('Название бренда', route('brands.show'));
+        Breadcrumbs::for('brands.show', function ($trail, $brand) {
+            $trail->parent('brands.index');
+            $trail->push($brand->name, route('brands.show', $brand));
         });
 
-    // Home > Actions
-    Breadcrumbs::for('actions.index', function ($trail) {
+    // Home > Promotions
+    Breadcrumbs::for('promotions.index', function ($trail) {
         $trail->parent('home');
-        $trail->push('Акции', route('actions.index'));
+        $trail->push('Акции', route('promotions.index'));
     });
 
-        // Home > Actions > Action
-        Breadcrumbs::for('actions.show', function ($trail, $action) {
-            $trail->parent('actions.index');
-            $trail->push($action->name, route('actions.show', $action));
+        // Home > Promotions > Action
+        Breadcrumbs::for('promotions.show', function ($trail, $promotion) {
+            $trail->parent('promotions.index');
+            $trail->push($promotion->name, route('promotions.show', $promotion));
         });
 
     // Home > Catalog

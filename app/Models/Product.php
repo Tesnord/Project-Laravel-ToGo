@@ -60,6 +60,16 @@ class Product extends Model
         return $this->belongsToMany(Description::class);
     }
 
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function promotions()
+    {
+        return $this->belongsToMany(Promotions::class);
+    }
+
     public function labels()
     {
         if ($label = $this->belongsToMany(Label::class)->get()->first()) {

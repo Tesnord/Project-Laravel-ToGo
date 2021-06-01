@@ -21,14 +21,14 @@ Route::prefix('subscribe')->group(function () {
     Route::get('/item', 'HomeController@subscribeShow')->name('subscribe.show');
 });
 
-Route::prefix('action')->group(function () {
-    Route::get('/', 'ActionsController@index')->name('actions.index');
-    Route::get('/{slug_action}', 'ActionsController@show')->name('actions.show');
+Route::prefix('promotions')->group(function () {
+    Route::get('/', 'PromotionsController@index')->name('promotions.index');
+    Route::get('/{slug_promotion}', 'PromotionsController@show')->name('promotions.show');
 });
 
-Route::prefix('brand')->group(function () {
+Route::prefix('brands')->group(function () {
     Route::get('/', 'BrandsController@index')->name('brands.index');
-    Route::get('/item', 'BrandsController@show')->name('brands.show');
+    Route::get('/{slug_brand}', 'BrandsController@show')->name('brands.show');
 });
 
 

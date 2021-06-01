@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\Product;
 use App\Utils\MarketFavorites;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -24,7 +25,11 @@ class BasketController extends Controller
     {
         MarketFavorites::getInstance();
         $products = $this->basket->products;
-        return view('basket.index', compact('products'));
+        $offer = Product::query()->paginate(5);
+        return view('basket.index', [
+            'products' => $products,
+            'offer' => $offer,
+        ]);
     }
 
     /**

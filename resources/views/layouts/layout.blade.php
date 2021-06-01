@@ -87,7 +87,7 @@
                 <li><a href="#">О нас</a></li>
                 <li><a href="#">Доставка и оплата</a></li>
                 <li><a href="{{ route('brands.index') }}">Бренды</a></li>
-                <li><a href="{{ route('actions.index') }}">Акции</a></li>
+                <li><a href="{{ route('promotions.index') }}">Акции</a></li>
             </ul>
             <div class="header__menu-info">
                 <div class="header__city"><img src="{{ asset('/assets/images/svg/map-i.svg') }}" alt=""> Краснодар</div>
@@ -109,7 +109,7 @@
                             <li><a href="#">О нас</a></li>
                             <li><a href="#">Доставка и оплата</a></li>
                             <li><a href="{{ route('brands.index') }}">Бренды</a></li>
-                            <li><a href="{{ route('actions.index') }}">Акции</a></li>
+                            <li><a href="{{ route('promotions.index') }}">Акции</a></li>
                         </ul>
                     </div>
                 </div>

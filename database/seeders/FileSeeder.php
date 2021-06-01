@@ -17,7 +17,7 @@ class FileSeeder extends Seeder
         for ($m = 1; $m <= 15; $m++)
             DB::table('files')->insert([
                 'src' => '/assets/images/action-img' . rand(1, 4) . '.jpg',
-                'entity_type' => 'App\Models\Action',
+                'entity_type' => 'App\Models\Promotions',
                 'entity_id' => $m,
             ]);
 

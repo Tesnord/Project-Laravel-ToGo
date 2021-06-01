@@ -189,6 +189,6 @@
         </div>
     </div>
     // end else
-    @include('layouts.catalog-min')
+    @include('layouts.catalog.catalog-min')
 
 @endsection
