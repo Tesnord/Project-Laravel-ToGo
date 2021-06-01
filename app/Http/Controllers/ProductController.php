@@ -15,6 +15,10 @@ class ProductController extends Controller
         MarketFavorites::getInstance();
         $category = Category::getByPath($path);
 
+        if ($category === null) {
+            abort(404);
+        }
+
         if ($category->getLevel() < 2) {
             $products = $category->qProductsRcsv()->get();
             return view('catalog.index', [
@@ -53,6 +57,10 @@ class ProductController extends Controller
             } else {
                 $rating = 0;
             }
+        }
+
+        if ($product === null) {
+            abort(404);
         }
 
         return view('catalog.product', [

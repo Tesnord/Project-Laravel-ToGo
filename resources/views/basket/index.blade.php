@@ -15,7 +15,8 @@
             </div>
         </div>
     </div>
-    // else (Блок если есть подписка)
+
+    {{--// else (Блок если есть подписка)
     <div class="cart-banner cart-banner-tw">
         <div class="cart-banner__inner">
             <div class="cart-banner__img"><img src="{{asset('assets/images/cart-banner2.png')}}" alt=""></div>
@@ -25,44 +26,12 @@
             </div>
         </div>
     </div>
-    // end else
+    // end else--}}
     <div class="cart">
         <div class="container">
             <div class="cart__inner">
                 <div class="cart__list">
-                    <div class="cart__list-item">
-                        <div class="cart__list-descr">
-                            <div class="cart__list-img"
-                                 style="background-image: url('{{ asset('assets/images/card-img3.jpg') }}')"></div>
-                            <a class="cart__list-title" href="#">Манго Тайское Премиум (1 шт 300 гр)</a>
-                            <div class="cart__list-article">Артикул: 87346773</div>
-                        </div>
-                        <div class="cart__list-numb cart__list-numb-tw">
-                            <div class="cart__list-price">
-                                <div class="cart__list-price-now">121 ₽</div>
-                                <div class="cart__list-price-old">145 ₽</div>
-                            </div>
-                            <div class="cart__list-numb-tx">Цена за 1 шт</div>
-                        </div>
-                        <div class="cart__list-amount">
-                            <div class="catalog__item-amount">
-                                <input type="text" value="1"><span class="up"><img
-                                        src="{{ asset('assets/images/svg/plus.svg') }}" alt=""></span><span
-                                    class="down"><img src="{{ asset('assets/images/svg/minus.svg') }}" alt=""></span>
-                            </div>
-                        </div>
-                        <div class="cart__list-numb">
-                            <div class="cart__list-price">
-                                <div class="cart__list-price-now">242 ₽</div>
-                            </div>
-                            <div class="cart__list-numb-tx">Экономия 300 ₽</div>
-                        </div>
-                        <div class="cart__list-delete">
-                            <svg>
-                                <use xlink:href="#delete"></use>
-                            </svg>
-                        </div>
-                    </div>
+
                     <div class="cart__list-item">
                         <div class="cart__list-descr">
                             <div class="cart__list-img"
@@ -96,8 +65,9 @@
                             </svg>
                         </div>
                     </div>
+
                 </div>
-                // else (товары по подписке в корзине)
+                {{--// else (товары по подписке в корзине)
                 <div class="cart__list">
                     <h3>Товары по подписке</h3>
                     <div class="cart__list-item">
@@ -134,10 +104,10 @@
                         </div>
                     </div>
                 </div>
-                // end else
+                // end else--}}
                 <div class="cart__list-all">
                     <div class="cart__list-descr">
-                        <div class="cart__list-all-title">Промокод применен</div>
+                        <div class="cart__list-all-title">Введите промокод</div>
                         <div class="cart__list-promo">
                             <input type="text">
                             <button class="cart__list-promo-btn"><img src="{{ asset('assets/images/svg/arrow3.svg') }}"
@@ -160,7 +130,7 @@
             </div>
         </div>
     </div>
-    // else (блок если нет подписок)
+    {{--// else (блок если нет подписок)
     <div class="cart-banner">
         <div class="container">
             <div class="cart-banner__inner">
@@ -173,9 +143,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    // end else
-    // else (пустая корзина)
+    </div>--}}
+
     <div class="tx">
         <div class="container">
             <div class="tx__inner">
@@ -188,7 +157,7 @@
             </div>
         </div>
     </div>
-    // end else
+
     @include('layouts.catalog.catalog-min')
 
 @endsection

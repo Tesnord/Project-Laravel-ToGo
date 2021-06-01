@@ -13,7 +13,11 @@
                 <div class="card-product__top-mob">
                     <div class="card-product__description-top">
                         <div class="card-product__description-top-item">Артикул: {{ $product->vendor_code }}</div>
-                        <div class="card-product__description-top-item">В наличии</div>
+                        @if($availability == 1)
+                            <div class="card-product__description-top-item">В наличии</div>
+                        @else
+                            <div class="card-product__description-top-item">Нет в наличии</div>
+                        @endif
                     </div>
                     <h1>{{ $product->title }}</h1>
                 </div>
@@ -59,8 +63,6 @@
                         <div class="form-inline">
                             <a class="button button-primary">купить<img
                                     src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
-                            {{--<a class="button button-all event-button to-favorite" href="#" data-product-id="{{ $product->id  }}">в избранное<img
-                                    src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>--}}
                             @if(empty($product->isFavorite()))
                                 <a class="button button-all" href="#"
                                    data-product-id="{{ $product->id  }}">в избранное<img
@@ -93,7 +95,10 @@
                             @endfor
                         </div>
                     </div>
-                    <div class="card-product__all-logo"><a href="{{ route('brands.show', $product->brand->slug_brand) }}"><img src="{{asset('assets/images/logo-card.png')}}" alt=""></a>
+                    <div class="card-product__all-logo">
+                        <a href="{{ route('brands.show', $product->brand->slug_brand) }}">
+                            <img src="{{asset('assets/images/logo-card.png')}}" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -146,20 +151,8 @@
                                         </div>
                                     </div>
                                     <div class="card-product__right">
-                                        <div class="card-product__bann">
-                                            <div class="card-product__bann-icon"><img
-                                                    src="{{asset('assets/images/svg/bann-icon.svg')}}" alt=""></div>
-                                            <div class="card-product__bann-tx">Наш курьер доставит ваш заказ в течение
-                                                1,5 часа
-                                            </div>
-                                            <a class="button button-bord2" href="#">Узнать больше</a>
-                                        </div>
-                                        <div class="card-product__deliv">
-                                            <div class="card-product__deliv-tx">Бесплатная доставки от 3 000 руб</div>
-                                            <div class="card-product__deliv-icon"><img
-                                                    src="{{asset('assets/images/svg/inf.svg')}}" alt=""></div>
-                                            <div class="card-product__deliv-icon-inf">блабла</div>
-                                        </div>
+                                        @include('layouts.product.courier')
+                                        @include('layouts.product.delivery')
                                     </div>
                                 </div>
                             </div>
@@ -181,21 +174,8 @@
                                         </div>
                                     </div>
                                     <div class="card-product__right">
-                                        <div class="card-product__bann">
-                                            <div class="card-product__bann-icon"><img
-                                                    src="{{asset('assets/images/svg/bann-icon.svg')}}" alt=""></div>
-                                            <div class="card-product__bann-tx">Наш курьер доставит ваш заказ в течение
-                                                1,5 часа
-                                            </div>
-                                            <a class="button button-bord2" href="#">Узнать больше</a>
-                                        </div>
-                                        <div class="card-product__deliv">
-                                            <div class="card-product__deliv-tx">Бесплатная доставки от 3 000 руб</div>
-                                            <div class="card-product__deliv-icon"><img
-                                                    src="{{asset('assets/images/svg/inf.svg')}}" alt="">
-                                                <div class="card-product__deliv-icon-inf">блабла</div>
-                                            </div>
-                                        </div>
+                                        @include('layouts.product.courier')
+                                        @include('layouts.product.delivery')
                                     </div>
                                 </div>
                             </div>
@@ -203,70 +183,52 @@
                                 <div class="card-product__tabs-holder">
                                     <div class="card-product__tabs-inner">
                                         <div class="card-product__reviews">
-                                            @foreach($reviews as $review)
-                                                <div class="card-product__reviews-item">
-                                                    <div class="card-product__reviews-info">
-                                                        <div
-                                                            class="card-product__reviews-title">{{ $review->user->name }}</div>
-                                                        <div class="card-product__reviews-rating">
-                                                            @for($i = 0; $i < 5; $i++)
-                                                                @if(floor($review->rating) - $i >= 1)
-                                                                    <div class="card-product__reviews-rating-item">
-                                                                        <img
-                                                                            src="{{asset('assets/images/svg/rating-active.svg')}}"
-                                                                            alt="">
-                                                                    </div>
-                                                                @else
-                                                                    <div class="card-product__reviews-rating-item">
-                                                                        <img
-                                                                            src="{{asset('assets/images/svg/rating.svg')}}"
-                                                                            alt="">
-                                                                    </div>
-                                                                @endif
-                                                            @endfor
 
+                                                @foreach($reviews as $review)
+                                                    <div class="card-product__reviews-item">
+                                                        <div class="card-product__reviews-info">
+                                                            <div class="card-product__reviews-title">
+                                                                {{ $review->user->name }}
+                                                            </div>
+                                                            <div class="card-product__reviews-rating">
+                                                                @for($i = 0; $i < 5; $i++)
+                                                                    @if(floor($review->rating) - $i >= 1)
+                                                                        <div class="card-product__reviews-rating-item">
+                                                                            <img
+                                                                                src="{{asset('assets/images/svg/rating-active.svg')}}"
+                                                                                alt="">
+                                                                        </div>
+                                                                    @else
+                                                                        <div class="card-product__reviews-rating-item">
+                                                                            <img
+                                                                                src="{{asset('assets/images/svg/rating.svg')}}"
+                                                                                alt="">
+                                                                        </div>
+                                                                    @endif
+                                                                @endfor
+                                                            </div>
+                                                            <div class="card-product__reviews-data">
+                                                                {{ $review->created_at->format('d.m.Y') }}
+                                                            </div>
                                                         </div>
-                                                        <div
-                                                            class="card-product__reviews-data">{{ $review->created_at->format('d.m.Y') }}</div>
-                                                    </div>
-                                                    <div class="card-product__reviews-description">
-                                                        <p>{{ $review->description }}</p>
-                                                        <div class="card-product__reviews-list">
-                                                            @foreach($review->getImages() as $image)
-
-                                                                <a class="card-product__reviews-list-img"
-                                                                   href="{{ asset($image->src) }}"
-                                                                   data-fancybox="rev1"
-                                                                   style="background-image: url({{ asset($image->src) }})"></a>
-                                                            @endforeach
-                                                            {{--<div
-                                                            class="card-product__reviews-list-img card-product__reviews-list-img-all"
-                                                            style="background-image: url({{ asset($image->src) }})">
-                                                            <span>еще 3</span></div>--}}
-
-
+                                                        <div class="card-product__reviews-description">
+                                                            <p>{{ $review->description }}</p>
+                                                            <div class="card-product__reviews-list">
+                                                                @foreach($review->getImages() as $image)
+                                                                    <a class="card-product__reviews-list-img"
+                                                                       href="{{ asset($image->src) }}"
+                                                                       data-fancybox="rev1"
+                                                                       style="background-image: url({{ asset($image->src) }})"></a>
+                                                                @endforeach
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                            <div class="card-product__reviews-btn js-card-product-reviews">смотреть +75 еще</div>
+                                                @endforeach
                                         </div>
                                     </div>
                                     <div class="card-product__right">
-                                        <div class="card-product__bann">
-                                            <div class="card-product__bann-icon"><img
-                                                    src="{{asset('assets/images/svg/bann-icon2.svg')}}" alt=""></div>
-                                            <div class="card-product__bann-tx">Спасибо, что делитесь своим мнением</div>
-                                            <a class="button button-bord2" href="#">Написать отзыв</a>
-                                        </div>
-                                        <div class="card-product__deliv">
-                                            <div class="card-product__deliv-tx">Бесплатная доставки от 3 000 руб</div>
-                                            <div class="card-product__deliv-icon"><img
-                                                    src="{{asset('assets/images/svg/inf.svg')}}"
-                                                    alt="">
-                                                <div class="card-product__deliv-icon-inf">блабла</div>
-                                            </div>
-                                        </div>
+                                        @include('layouts.product.review')
+                                        @include('layouts.product.delivery')
                                     </div>
                                 </div>
                             </div>
@@ -355,7 +317,6 @@
                                                                           href="#">купить<img
                                             src="{{asset('assets/images/svg/cart.svg')}}" alt=""></a></div>
                             </div>
-                            <div class="card-product__product-btn-main js-card-product">смотреть +75 еще</div>
                         </div>
                     </div>
                 </div>
