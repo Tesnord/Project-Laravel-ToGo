@@ -123,7 +123,6 @@ class Category extends Model
 
     public function getImages()
     {
-
         return File::query()
             ->where('entity_type', '=', Category::class)
             ->where('entity_id', '=', $this->getAttribute('id'))

@@ -34,6 +34,5 @@ class Brand extends Model
     }
 
 
-
     use HasFactory;
 }

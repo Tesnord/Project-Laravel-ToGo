@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="11cea589-6437-4791-89e4-b5880bc9c299" name="ToGo" url="http://151.248.126.236">
-        <fileTransfer host="151.248.126.236" port="21">
+      <webServer id="87309f74-9898-4951-bcc3-438c246fe50b" name="Market_ToGo" url="http://151.248.114.61">
+        <fileTransfer host="151.248.114.61" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

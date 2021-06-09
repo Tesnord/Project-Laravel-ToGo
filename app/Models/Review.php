@@ -10,7 +10,6 @@ class Review extends Model
 
     public function getImages()
     {
-
         return File::query()
             ->where('entity_type', '=', Review::class)
             ->where('entity_id', '=', $this->getAttribute('id'))

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Utils\MarketBaskets;
 use Exception;
 use Illuminate\Http\Request;
 use App\Utils\MarketFavorites;
@@ -12,7 +13,6 @@ class ProductController extends Controller
 {
     public function index(string $path = '/')
     {
-        MarketFavorites::getInstance();
         $category = Category::getByPath($path);
 
         if ($category === null) {
@@ -78,9 +78,10 @@ class ProductController extends Controller
 
     public function favorite()
     {
+        global $favorites;
+
         try {
-            MarketFavorites::getInstance();
-            $q_favorites = Product::query()->find($GLOBALS['favorites'])->all();
+            $q_favorites = Product::query()->find($favorites)->all();
             $offer = Product::query()->paginate(5);
         } catch (Exception $exception) {
             $q_favorites = [];
@@ -93,7 +94,6 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        MarketFavorites::getInstance();
         $search = $request->input('query');
         $query = Product::search($search);
         $products = $query->paginate(100)->withQueryString();

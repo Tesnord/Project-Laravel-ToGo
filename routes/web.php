@@ -1,5 +1,7 @@
 <?php
 
+use App\Utils\MarketBaskets;
+use App\Utils\MarketFavorites;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+$favoritesInst = MarketFavorites::createInstance();
+$basketInst = MarketBaskets::createInstance();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/policy', 'HomeController@policy')->name('policy');
@@ -44,7 +49,6 @@ Route::prefix('catalog')->group(function () {
 Route::prefix('basket')->group(function () {
     Route::get('/index', 'BasketController@index')->name('basket.index');
     Route::get('/checkout', 'BasketController@checkout')->name('basket.checkout');
-
 
     // Route::post('/plus/{id}', 'BasketController@plus')
     //     ->where('id', '[0-9]+')

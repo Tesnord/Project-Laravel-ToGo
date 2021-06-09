@@ -38,8 +38,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        MarketFavorites::getInstance();
-        $this->reportable(function (Throwable $e) {
+               $this->reportable(function (Throwable $e) {
             //
         });
     }

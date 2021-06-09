@@ -1,22 +1,5 @@
 'use strict'
-
-/*document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded')
-    document
-        .querySelectorAll('.event-button.to-favorite')
-        .forEach(node => {
-            node.addEventListener('click', e => {
-                e.preventDefault()
-                const product_id = e.currentTarget.dataset.productId
-                const cookie_favorites = Cookies.get('market_favorites')
-                const favorites = JSON.parse(cookie_favorites)
-
-                console.log(favorites)
-                console.log(product_id)
-            })
-        })
-})*/
-
+// Добавление в избранное из каталога
 if (document.querySelectorAll('.catalog__item .catalog__item-fav')) {
     document.querySelectorAll('.catalog__item .catalog__item-fav').forEach(t => {
         t.addEventListener('click', e => {
@@ -51,6 +34,7 @@ if (document.querySelectorAll('.catalog__item .catalog__item-fav')) {
     })
 }
 
+// Добавление в избранное из карточки товара
 if (document.querySelector(".button.button-all[data-product-id]")) {
     document.querySelector(".button.button-all[data-product-id]").addEventListener('click', e => {
         const product_id = e.currentTarget.dataset.productId
@@ -78,3 +62,180 @@ if (document.querySelector(".button.button-all[data-product-id]")) {
     })
 }
 
+// Добавление в корзину из каталога
+if (document.querySelectorAll('.catalog__item .catalog__item-buy')) {
+    document.querySelectorAll('.catalog__item .catalog__item-buy').forEach(t => {
+        t.addEventListener('click', e => {
+            const product_id = e.target.closest('[data-product-id]').dataset.productId
+            let basketArr = []
+            if (Cookies.get('market_basket')) {
+                basketArr = JSON.parse(Cookies.get('market_basket')).basket
+            }
+            const found = basketArr.find((el) => {
+                if (el.id === product_id) {
+                    el.quantity++
+                    return true
+                }
+                return false
+            })
+            if (typeof found === 'undefined') {
+                basketArr.push({'id': product_id, 'quantity': '1'})
+            }
+
+
+             const item_index = basketArr.indexOf(product_id)
+            if (item_index === -1) {
+                basketArr.unshift({'id': product_id, 'quantity': '1'})
+                e.target.querySelector('img').src = "/assets/images/svg/like2.svg"
+            } else {
+                basketArr.splice({'id': product_id, 'quantity': '1'}, 1)
+                e.target.querySelector('img').src = "/assets/images/svg/like.svg"
+            }
+
+            if (basketArr.length === 0) {
+                Cookies.remove('market_basket')
+            } else {
+                Cookies.set('market_basket', {"basket": basketArr}, {expires: 7})
+            }
+
+            console.log(basketArr.length)
+            console.log(basketArr)
+        })
+    })
+}
+
+// Добавление в корзину из карточки товара
+if (document.querySelector(".button.button-primary[data-product-id]")) {
+    document.querySelector(".button.button-primary[data-product-id]").addEventListener('click', e => {
+
+        const product_id = e.currentTarget.dataset.productId
+        let basketArr = []
+        if (Cookies.get('market_basket')) {
+            basketArr = JSON.parse(Cookies.get('market_basket')).basket
+        }
+        const found = basketArr.find((el) => {
+            if (el.id === product_id) {
+                el.quantity++
+                return true
+            }
+            return false
+        })
+        if (typeof found === 'undefined') {
+            basketArr.push({'id': product_id, 'quantity': '1'})
+        }
+        if (basketArr.length === 0) {
+            Cookies.remove('market_basket')
+        } else {
+            Cookies.set('market_basket', {"basket": basketArr}, {expires: 7})
+        }
+
+        console.log(basketArr)
+    })
+}
+
+// Изменение товара в корзине
+if (document.querySelectorAll('.cart__list-item')) {
+    // Удаление товара из корзины
+    document.querySelectorAll('.cart__list-item .cart__list-delete').forEach(t => {
+        t.addEventListener('click', e => {
+            const product_id = e.target.closest('[data-product-id]').dataset.productId
+            let basketArr = []
+            if (Cookies.get('market_basket')) {
+                basketArr = JSON.parse(Cookies.get('market_basket')).basket
+            }
+            basketArr.map(el => {
+                if (el.id === product_id) {
+                    basketArr.splice(basketArr.indexOf(el), 1)
+                }
+            })
+
+            if (basketArr.length === 0) {
+                Cookies.remove('market_basket')
+            } else {
+                Cookies.set('market_basket', {"basket": basketArr}, {expires: 7})
+            }
+
+            console.log(basketArr)
+
+        })
+    })
+    // Увеличение количества товара в корзине
+    document.querySelectorAll('.cart__list-item .catalog__item-amount .up').forEach(t => {
+        t.addEventListener('click', e => {
+            e.preventDefault()
+            const product_id = e.target.closest('[data-product-id]').dataset.productId
+            let basketArr = []
+            if (Cookies.get('market_basket')) {
+                basketArr = JSON.parse(Cookies.get('market_basket')).basket
+            }
+            basketArr.map(el => {
+                if (el.id === product_id) {
+                    const input = e.target.parentElement.querySelector('input')
+                    if (input) {
+                        const max = input.max
+                        let value = input.value
+                        value = value++ < max ? value++ : max
+                        input.value = value
+                        el.quantity = value
+                    }
+                }
+            })
+
+            if (basketArr.length === 0) {
+                Cookies.remove('market_basket')
+            } else {
+                Cookies.set('market_basket', {"basket": basketArr}, {expires: 7})
+            }
+            console.log(basketArr)
+
+        })
+    })
+    // Уменьшение количества товара в корзине
+    document.querySelectorAll('.cart__list-item .catalog__item-amount .down').forEach(t => {
+        t.addEventListener('click', e => {
+            const product_id = e.target.closest('[data-product-id]').dataset.productId
+            let basketArr = []
+            if (Cookies.get('market_basket')) {
+                basketArr = JSON.parse(Cookies.get('market_basket')).basket
+            }
+            basketArr.map(el => {
+                if (el.id === product_id) {
+                    const input = e.target.parentElement.querySelector('input')
+                    if (input) {
+                        let value = input.value
+                        value = value-- <= 1 ? 1 : value
+                        input.value = value
+                        el.quantity = value
+                    }
+                }
+            })
+
+            if (basketArr.length === 0) {
+                Cookies.remove('market_basket')
+            } else {
+                Cookies.set('market_basket', {"basket": basketArr}, {expires: 7})
+            }
+            console.log(basketArr)
+
+        })
+    })
+}
+
+
+/*
+<div className="catalog__item-amount">
+    <span className="catalog__item-buy" data-product-id="{{ $product->id }}">купить
+        <img src="{{asset('/assets/images/svg/cart.svg')}}" alt="">
+    </span>
+</div>
+
+
+<div className="catalog__item-amount">
+    <input type="text" min="1" max="20" value="{{$product->quantityInBasket}}">
+    <span className="up">
+        <img src="{{asset('/assets/images/svg/plus.svg')}}" alt="">
+    </span>
+    <span className="down">
+        <img src="{{asset('/assets/images/svg/minus.svg')}}" alt="">
+    </span>
+</div>*/

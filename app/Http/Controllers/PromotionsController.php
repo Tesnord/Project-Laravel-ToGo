@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Promotions;
+use App\Utils\MarketBaskets;
 use App\Utils\MarketFavorites;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -11,13 +12,12 @@ class PromotionsController extends Controller
 {
     public function index()
     {
-        MarketFavorites::getInstance();
         $promotions = Promotions::query()->paginate(3);
 
 
         foreach ($promotions as $promotion) {
             $start = Carbon::create($promotion->start)->formatLocalized('%d %B');
-            $finish = Carbon::create($promotion->finish)->formatLocalized('%d %B') ;
+            $finish = Carbon::create($promotion->finish)->formatLocalized('%d %B');
             $brand = $promotion->brand;
         }
         return view('promotions.index', [
@@ -30,7 +30,6 @@ class PromotionsController extends Controller
 
     public function show($slug_promotion)
     {
-        MarketFavorites::getInstance();
         $promotion = Promotions::query()->where('slug_promotion', '=', $slug_promotion)->first();
         $start = date('d F', strtotime($promotion->start));
         $finish = date('d F', strtotime($promotion->finish));

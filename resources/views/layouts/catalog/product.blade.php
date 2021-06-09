@@ -30,23 +30,26 @@
             <div class="catalog__item-bottom">
                 <div class="catalog__item-info">
                     <div class="catalog__item-price">
-                        <div class="catalog__item-price-old"></div>
-                        <div
-                            class="catalog__item-price-now">{{ $product->price->value }} {{ $product->price->currency->value }}</div>
+                        <div class="catalog__item-price-now">
+                            {{ $product->price->value }}
+                            {{ $product->price->currency->value }}
+                        </div>
                     </div>
-                    <form action="{{ route('basket.add', ['id' => $product->id]) }}"
-                          method="post" class="form-inline">
-                        <button class="button button-primary">купить<img
-                                src="{{ asset('assets/images/svg/cart.svg') }}" alt="">
-                        </button>
-                        @csrf
-                    </form>
-
+                    <a class="catalog__item-buy" style="color: #ffffff" data-product-id="{{ $product->id }}">
+                        купить
+                        <img src="{{ asset('assets/images/svg/cart.svg')}}" alt="">
+                    </a>
+                    {{--<div class="catalog__item-amount">
+                        <input type="text" value="1">
+                        <span class="up">
+                            <img src="{{asset('assets/images/svg/plus.svg')}}" alt="">
+                        </span>
+                        <span class="down">
+                            <img src="{{asset('assets/images/svg/minus.svg')}}" alt="">
+                        </span>
+                    </div>--}}
                 </div>
-                {{--@if()
-                для предложений class catalog__item + "catalog__item-bt"
-                    <a class="catalog__item-offer" href="#">5 предложений</a>
-                @endif--}}
+
             </div>
         </div>
     </div>

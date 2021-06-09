@@ -61,14 +61,14 @@
                     </div>
                     <div class="card-product__description-btns">
                         <div class="form-inline">
-                            <a class="button button-primary">купить<img
+                            <a class="button button-primary" data-product-id="{{ $product->id }}">купить<img
                                     src="{{ asset('assets/images/svg/cart.svg') }}" alt=""></a>
                             @if(empty($product->isFavorite()))
-                                <a class="button button-all" href="#"
+                                <a class="button button-all"
                                    data-product-id="{{ $product->id  }}">в избранное<img
                                         src="{{ asset('assets/images/svg/like.svg') }}" alt=""></a>
                             @else
-                                <a class="button button-all" href="#"
+                                <a class="button button-all"
                                    data-product-id="{{ $product->id  }}">в избранное<img
                                         src="{{ asset('assets/images/svg/like2.svg') }}" alt=""></a>
                             @endif
