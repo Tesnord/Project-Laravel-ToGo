@@ -18,8 +18,21 @@ use Illuminate\Support\Facades\Route;
 $favoritesInst = MarketFavorites::createInstance();
 $basketInst = MarketBaskets::createInstance();
 
+Route::get('/study', function () {
+    return view('study');
+});
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/policy', 'HomeController@policy')->name('policy');
+Route::get('/public', 'HomeController@public')->name('public');
+Route::get('/scores', 'HomeController@scores')->name('scores');
+Route::get('/provider', 'HomeController@provider')->name('provider');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/delivery', 'HomeController@delivery')->name('delivery');
+
+Route::get('/login', 'LoginController@login')->name('login');
+
+
 
 Route::prefix('subscribe')->group(function () {
     Route::get('/', 'HomeController@subscribeIndex')->name('subscribe.index');
@@ -33,7 +46,7 @@ Route::prefix('promotions')->group(function () {
 
 Route::prefix('brands')->group(function () {
     Route::get('/', 'BrandsController@index')->name('brands.index');
-    Route::get('/{slug_brand}', 'BrandsController@show')->name('brands.show');
+    // Route::get('/{slug_brand}', 'BrandsController@show')->name('brands.show');
 });
 
 
@@ -61,3 +74,5 @@ Route::prefix('basket')->group(function () {
     //     ->name('basket.remove');
     // Route::post('/clear', 'BasketController@clear')->name('basket.clear');
 });
+
+

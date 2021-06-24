@@ -100,7 +100,7 @@
                 <div class="tx__text">
                     <div class="tx__title">В корзине пока нет товаров</div>
                     <p>Перейдите в каталог, посмотрите скидки или <br>воспользуйтесь поиском, чтобы найти нужный товар.
-                    </p><a class="button button-secondary" href="#">начать покупки</a>
+                    </p><a class="button button-secondary" href="{{ route('home') }}">начать покупки</a>
                 </div>
             </div>
         </div>

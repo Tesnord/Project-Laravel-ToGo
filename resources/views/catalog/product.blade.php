@@ -74,7 +74,7 @@
                             @endif
                         </div>
                     </div>
-                    <a class="card-product__description-link" href="#"><img
+                    <a class="card-product__description-link" href="{{ route('subscribe.index') }}"><img
                             src="{{ asset('assets/images/svg/icon1.svg') }}" alt=""><span>Получайте товары по более привлекательной цене</span></a>
                 </div>
                 <div class="card-product__all">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="card-product__all-logo">
-                        <a href="{{ route('brands.show', $product->brand->slug_brand) }}">
+{{--                        <a href="{{ route('brands.show', $product->brand->slug_brand) }}">--}}
                             <img src="{{asset('assets/images/logo-card.png')}}" alt="">
                         </a>
                     </div>
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                     <div class="card-product__right">
-                                        @include('layouts.product.courier')
+                                        @include('layouts.product.review')
                                         @include('layouts.product.delivery')
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@
                                         </div>
                                     </div>
                                     <div class="card-product__right">
-                                        @include('layouts.product.courier')
+                                        @include('layouts.product.review')
                                         @include('layouts.product.delivery')
                                     </div>
                                 </div>

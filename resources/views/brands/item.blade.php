@@ -36,7 +36,7 @@
                                 @endforeach
                                 <div class="actions__item-tx">
                                     <div class="actions__item-data">с {{date('d F', strtotime($promotion->start))}} по {{ date('d F', strtotime($promotion->finish)) }}</div>
-                                    <a class="actions__item-title" href="#">{{ $promotion->name }}</a>
+                                    <a class="actions__item-title" href="{{ route('promotions.show', $promotion->slug_promotion) }}">{{ $promotion->name }}</a>
                                     <div class="actions__item-firm">{{ $brand->firm }}</div>
                                 </div>
                             </div>

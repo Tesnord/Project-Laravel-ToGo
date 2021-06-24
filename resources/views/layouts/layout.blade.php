@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="{{ asset('vendors/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 <svg style="display: none">
@@ -35,10 +36,8 @@
             </clipPath>
         </defs>
     </symbol>
-    <symbol id="like" viewBox="0 0 21 18" fill="none">
-        <path
-            d="M19.9947 4.07014L19.9949 4.07075C20.3301 4.80276 20.5023 5.58306 20.5 6.38643M19.9947 4.07014L9.79871 1.45514C8.86301 0.918559 8.03381 0.500015 6.81282 0.500015C5.97131 0.500015 5.15305 0.65168 4.37911 0.953837C3.63185 1.24469 2.95603 1.66403 2.37496 2.19892C1.79483 2.73108 1.32962 3.36672 1.00725 4.07071L1.00724 4.07075C0.672026 4.80296 0.5 5.58298 0.5 6.38554C0.5 7.14696 0.665443 7.92824 0.983326 8.70957L0.983432 8.70983C1.24901 9.36155 1.62568 10.028 2.09936 10.6926L2.09953 10.6929C2.84979 11.7443 3.87125 12.8273 5.12366 13.9142C7.16756 15.6885 9.18971 16.9209 9.34376 17.0116L9.86245 17.3243L9.86341 17.3249C10.2527 17.5584 10.7473 17.5584 11.1366 17.3249L11.1375 17.3243L11.6587 17.0101C11.6587 17.0101 11.6587 17.0101 11.6588 17.0101C11.7554 16.9518 13.8018 15.7131 15.8761 13.9144L15.8763 13.9142C17.1287 12.8273 18.1502 11.7443 18.9004 10.6929L18.9006 10.6926C19.3735 10.0291 19.753 9.3623 20.0169 8.70899C20.3345 7.92815 20.4998 7.14738 20.5 6.38643M19.9947 4.07014C19.6716 3.36701 19.2068 2.73187 18.6277 2.19939C18.049 1.66616 17.3683 1.24379 16.6233 0.953941C15.8509 0.652341 15.0235 0.498275 14.1888 0.500015M19.9947 4.07014L11.2013 1.45514C12.1372 0.918458 12.9683 0.50014 14.1888 0.500015M20.5 6.38643C20.5 6.38664 20.5 6.38684 20.5 6.38705L20 6.38554H20.5C20.5 6.38584 20.5 6.38613 20.5 6.38643ZM14.1888 0.500015C14.189 0.500015 14.1892 0.500015 14.1894 0.500015V1.00001L14.1883 0.500016C14.1885 0.500015 14.1886 0.500015 14.1888 0.500015Z"
-            fill="white" fill-opacity="0.6" stroke="currentColor"/>
+    <symbol id="like" viewBox="0 0 23 20" fill="none">
+        <path d="M11.3516 18.9475C11.2609 18.9447 11.1731 18.9143 11.0997 18.8602L10.5762 18.5783L9.91345 18.2024C8.30189 17.1647 6.78683 15.9807 5.38701 14.6651L5.13517 14.4234C3.89587 13.2622 2.48426 11.9466 1.71549 10.3961C1.0748 9.1015 0.883362 7.62603 1.17206 6.20771C1.48482 4.76062 2.27212 3.46341 3.40573 2.52735C4.53934 1.59129 5.95246 1.07154 7.41496 1.05273C8.91089 1.05361 10.3587 1.58834 11.504 2.56298C12.7119 1.54456 14.2492 1.015 15.8197 1.07634C17.3902 1.13768 18.8826 1.78559 20.0095 2.89521C21.1363 4.00482 21.8178 5.49759 21.9225 7.08584C22.0273 8.67408 21.5479 10.2454 20.5768 11.4969C19.8115 12.4205 18.9809 13.2864 18.0915 14.0878L17.8264 14.3362C16.8508 15.2609 15.8218 16.1261 14.7447 16.9271C13.7461 17.7349 12.6505 18.4115 11.4841 18.9408C11.4408 18.9518 11.3958 18.9541 11.3516 18.9475ZM7.41496 1.60985C6.25985 1.61734 5.1327 1.97052 4.17522 2.62499C3.21773 3.27945 2.47264 4.20599 2.0336 5.28814C1.89497 5.62214 1.78629 5.96809 1.70887 6.32182C1.4546 7.62051 1.639 8.96807 2.23242 10.1478C3.11167 11.6181 4.23232 12.9256 5.54607 14.014L5.80453 14.2556C7.17813 15.5506 8.66674 16.7145 10.2514 17.7326C10.4436 17.8601 10.6491 17.9742 10.8545 18.0883L11.3516 18.3568C12.4446 17.8618 13.4748 17.2353 14.42 16.4908C15.4794 15.7032 16.4908 14.8514 17.4487 13.9402L17.7204 13.6918C18.5915 12.8977 19.4023 12.0384 20.146 11.121C21.026 9.96101 21.4475 8.51038 21.3281 7.05248C21.2086 5.59458 20.5569 4.23413 19.5002 3.23683C18.4435 2.23952 17.0576 1.67701 15.6133 1.65915C14.169 1.64129 12.77 2.16936 11.6896 3.14023L11.504 3.30804L11.3184 3.14023C10.2508 2.15569 8.85886 1.60998 7.41496 1.60985Z" fill="#9DA3AE" stroke="#9DA3AE"/>
     </symbol>
     <symbol id="filter" viewBox="0 0 17 11" fill="none">
         <path fill="currentColor"
@@ -71,10 +70,12 @@
     </div>
     <header class="header">
         <div class="header__menu-mob">
-            <div class="header__menu-icon"><a class="header__menu-icon-item" href="#">
+            <div class="header__menu-icon">
+                <a class="header__menu-icon-item" href="{{ route('scores') }}">
                     <img src="{{ asset('/assets/images/svg/icon-menu3.svg') }}" alt="">
                     <span class="header__menu-icon-notif">4</span>
-                    <span class="header__menu-icon-tit">баллы</span></a>
+                    <span class="header__menu-icon-tit">баллы</span>
+                </a>
                 <a class="header__menu-icon-item" href="{{ route('catalog.favorite') }}">
                     <img src="{{ asset('/assets/images/svg/icon-menu4.svg') }}" alt="">
                     @if(count($GLOBALS["favorites"]) >= 1)
@@ -86,15 +87,15 @@
             </div>
             <div class="header__menu-btn-catalog js-menu-btn-catalog">каталог товаров</div>
             <ul class="header__menu-main">
-                <li><a href="#">Поставщикам</a></li>
-                <li><a href="#">О нас</a></li>
-                <li><a href="#">Доставка и оплата</a></li>
+                <li><a href="{{ route('provider') }}">Поставщикам</a></li>
+                <li><a href="{{ route('about') }}">О нас</a></li>
+                <li><a href="{{ route('delivery') }}">Доставка и оплата</a></li>
                 <li><a href="{{ route('brands.index') }}">Бренды</a></li>
                 <li><a href="{{ route('promotions.index') }}">Акции</a></li>
             </ul>
             <div class="header__menu-info">
                 <div class="header__city"><img src="{{ asset('/assets/images/svg/map-i.svg') }}" alt=""> Краснодар</div>
-                <div class="header__tel">Центр поддержки клиентов:<a href="#">8 800 456 25 14</a></div>
+                <div class="header__tel">Центр поддержки клиентов:<a href="tel: 8 800 456 25 14">8 800 456 25 14</a></div>
             </div>
         </div>
         <div class="header__top">
@@ -104,13 +105,13 @@
                         <div class="header__city"><img src="{{ asset('/assets/images/svg/map-i.svg') }}" alt="">
                             Краснодар
                         </div>
-                        <div class="header__tel">Центр поддержки клиентов:<a href="#">8 800 456 25 14</a></div>
+                        <div class="header__tel">Центр поддержки клиентов:<a href="tel: 8 800 456 25 14">8 800 456 25 14</a></div>
                     </div>
                     <div class="header__top-menu">
                         <ul>
-                            <li><a href="#">Поставщикам</a></li>
-                            <li><a href="#">О нас</a></li>
-                            <li><a href="#">Доставка и оплата</a></li>
+                            <li><a href="{{ route('provider') }}">Поставщикам</a></li>
+                            <li><a href="{{ route('about') }}">О нас</a></li>
+                            <li><a href="{{ route('delivery') }}">Доставка и оплата</a></li>
                             <li><a href="{{ route('brands.index') }}">Бренды</a></li>
                             <li><a href="{{ route('promotions.index') }}">Акции</a></li>
                         </ul>
@@ -122,8 +123,9 @@
             <div class="container">
                 <div class="header__bottom-inner">
                     <div class="header__toggler js-toggler"></div>
-                    <a class="header__logo-mob" href="#"><img src="{{ asset('/assets/images/svg/logo-mob.svg') }}"
-                                                              alt=""></a>
+                    <a class="header__logo-mob" href="{{ route('home') }}">
+                        <img src="{{ asset('/assets/images/svg/logo-mob.svg') }}" alt="">
+                    </a>
                     <div class="header__search">
                         <form action="{{ route('catalog.search') }}">
                             <input type="search" name="query" placeholder="Что вы ищете?" aria-label="Search">
@@ -135,7 +137,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="header__bottom-info"><a class="header__bottom-info-item" href="#">
+                    <div class="header__bottom-info"><a class="header__bottom-info-item" href="{{ route('scores') }}">
                             <img src="{{ asset('/assets/images/svg/icon-header1.svg') }}" alt=""> баллы
                             <span class="header__bottom-info-notif">4</span>
                         </a>
@@ -153,7 +155,7 @@
                                 <span class="header__bottom-info-notif" style="left: 17px">{{ count($GLOBALS["basket"]) }}</span>
                             @endif
                         </a>
-                        <a class="header__bottom-info-item header__bottom-info-item-enter" href="#">
+                        <a class="header__bottom-info-item header__bottom-info-item-enter" href="{{ route('login') }}">
                             <img src="{{ asset('/assets/images/svg/icon-header4.svg') }}" alt=""> войти
                         </a>
                     </div>
@@ -169,9 +171,9 @@
             <div class="bottom-block__inner">
                 <div class="bottom-block__info">
                     <div class="bottom-block__title">Заказывайте продукты легко и быстро через наше приложение</div>
-                    <div class="bottom-block__btns"><a class="bottom-block__btns-item" href="#"><img
+                    <div class="bottom-block__btns"><a class="bottom-block__btns-item" href="https://www.apple.com"><img
                                 src="{{ asset('/assets/images/app-store.png') }}" alt=""></a><a
-                            class="bottom-block__btns-item" href="#"><img
+                            class="bottom-block__btns-item" href="https://play.google.com/"><img
                                 src="{{ asset('/assets/images/google-play.png') }}" alt=""></a></div>
                 </div>
                 <div class="bottom-block__img"><img class="img-fluid" src="{{ asset('/assets/images/phone.png') }}"
@@ -186,9 +188,9 @@
             <div class="container">
                 <div class="footer__top-inner">
                     <ul class="footer__menu">
-                        <li><a href="#">О нас</a></li>
-                        <li><a href="#">Поставщикам</a></li>
-                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="{{ route('about') }}">О нас</a></li>
+                        <li><a href="{{ route('provider') }}">Поставщикам</a></li>
+                        <li><a href="{{ route('delivery') }}">Доставка и оплата</a></li>
                         <li><a href="{{ route('brands.index') }}">Бренды</a></li>
                     </ul>
                     <div class="footer__top-info"><a class="footer__tel" href="tel:8 800 456 25 14">8 800 456 25
@@ -202,23 +204,22 @@
                     <ul class="footer__bottom-info">
                         <li>© 2020, MARKET TO GO</li>
                         <li><a href="{{ route('policy') }}">Конфиденциальность</a></li>
-                        <li><a href="#">Публичная оферта</a></li>
-                        <li><a href="#">Карта сайта</a></li>
+                        <li><a href="{{ route('public') }}">Публичная оферта</a></li>
                     </ul>
                     <div class="footer__bottom-descr">
                         <ul class="footer__soc">
-                            <li><a href="#">
+                            <li><a href="https://vk.com/" target="_blank">
                                     <svg>
                                         <use xlink:href="#vk"></use>
                                     </svg>
                                 </a></li>
-                            <li><a href="#">
+                            <li><a href="https://www.instagram.com/" target="_blank">
                                     <svg>
                                         <use xlink:href="#in"></use>
                                     </svg>
                                 </a></li>
                         </ul>
-                        <a class="footer__dev" href="#">Сделано в Affetta</a>
+                        <a class="footer__dev" href="https://affetta.ru/" target="_blank">Сделано в Affetta</a>
                     </div>
                 </div>
             </div>
@@ -240,4 +241,5 @@
 <script src="https://unpkg.com/hasget/dist/hasget.min.js"></script>
 <script type="text/javascript" src="{{ asset('assets/js/external.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script type="text/javascript" src="{{ asset('assets/js/filter.js') }}"></script>
 </html>

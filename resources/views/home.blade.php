@@ -12,12 +12,12 @@
                         <div class="banner__big-slider-item" style="background-image: url({{ asset('assets/images/banner1.jpg') }})">
                             <div class="banner__big-slider-title">Ура! Мы открылись</div>
                             <div class="banner__big-slider-tx">В честь открытия дарим скидку 10% на все!</div>
-                            <a class="button button-bord" href="#">Узнать больше</a>
+                            <a class="button button-bord" href="{{ route('promotions.index') }}">Узнать больше</a>
                         </div>
                         <div class="banner__big-slider-item" style="background-image: url({{ asset('assets/images/banner1.jpg') }})">
                             <div class="banner__big-slider-title">Ура! Мы открылись</div>
                             <div class="banner__big-slider-tx">В честь открытия дарим скидку 10% на все!</div>
-                            <a class="button button-bord" href="#">Узнать больше</a>
+                            <a class="button button-bord" href="{{ route('promotions.index') }}">Узнать больше</a>
                         </div>
                     </div>
                 </div>
@@ -25,12 +25,12 @@
             <div class="col-xl-4 col-lg-12">
                 <div class="banner__al">
                     <div class="banner__min-in">
-                        <a class="banner__min" href="#" style="background-image: url({{ asset('assets/images/banner2.jpg') }})">
+                        <a class="banner__min" href="{{ route('promotions.index') }}" style="background-image: url({{ asset('assets/images/banner2.jpg') }})">
                             <span class="banner__min-title">Скидки до 25%<br>на батончики Jimmy</span>
                         </a>
                     </div>
                     <div class="banner__min-in">
-                        <a class="banner__min" href="#" style="background-image: url({{ asset('assets/images/banner3.jpg') }})">
+                        <a class="banner__min" href="{{ route('promotions.index') }}" style="background-image: url({{ asset('assets/images/banner3.jpg') }})">
                             <span class="banner__min-title">Спецпредложение<br>на овощи и фрукты</span>
                         </a>
                     </div>
@@ -75,7 +75,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="delivery__order" style="background-image: url({{ asset('assets/images/delivery-bg.jpg') }})">
                     <div class="delivery__order-title">Хотите оформить регулярную доставку своих любимых продуктов?</div>
-                    <p>Оформите подписку в личном кабинете и еженедельно получайте выбранные вами продукты на дом.</p><a class="button button-bord" href="#">Узнать больше</a>
+                    <p>Оформите подписку в личном кабинете и еженедельно получайте выбранные вами продукты на дом.</p><a class="button button-bord" href="{{ route('subscribe.index') }}">Узнать больше</a>
                 </div>
             </div>
         </div>

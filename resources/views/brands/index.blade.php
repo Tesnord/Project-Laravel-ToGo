@@ -12,25 +12,55 @@
         <div class="container">
             <div class="title-main__inner">
                 <h1>Бренды</h1>
+                <div class="title-main__numb">1500</div>
             </div>
         </div>
     </div>
-    <div class="actions">
+    <div class="brands">
         <div class="container">
-            <div class="row">
-                @foreach($brands as $brand)
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                        <div class="actions__item">
-                            <a class="actions__item-img" href="{{ route('brands.show', $brand->slug_brand) }}" style="background-image: url({{ asset('assets/images/action-img2.jpg') }})"></a>
-                            <div class="actions__item-tx">
-                                <a class="actions__item-title" href="{{ route('brands.show', $brand->slug_brand) }}">title</a>
-                                <div class="actions__item-firm">ООО «Мир здоровья»</div>
+            <div class="brands__inner">
+                <div class="brands__list">
+                    <a class="brands__list-item brands__list-item-main" href="{{ route('brands.index') }}" data-order="all">Все</a>
+                    @foreach ($en as $key => $value)
+                        <a class="brands__list-item" href="/brands/en-{{$value}}" data-order="en-{{$value}}">{{$key}}</a>
+                    @endforeach
+                    <a class="brands__list-item" data-order="number">0-9</a>
+                </div>
+                <div class="brands__list">
+                    @foreach ($ru as $key => $value)
+                        <a class="brands__list-item" href="/brands/ru-{{$value}}" data-order="ru-{{$value}}">{{$key}}</a>
+                    @endforeach
+                </div>
+                <div class="brands__all">
+                    @foreach($brands as $letter => $letterBrand)
+                        @if(!empty($letterBrand))
+                            <div class="brands__all-title">{{ $letter }}</div>
+                            <div class="brands__all-inner">
+                                @foreach($letterBrand as $brand)
+                                    <a class="brands__all-item" href="/brands/{{ $brand->id}}">
+                                        <span>{{ $brand->name }}</span>
+                                    </a>
+                                @endforeach
+                                @foreach($en as $key)
+                                    @if($letter == $key)
+                                        <a class="brands__all-item brands__all-item-link" data-order="en-{{ $letter }}">
+                                            <span>Все бренды на {{ $letter }}</span>
+                                        </a>
+                                    @endif
+                                @endforeach
+                                @foreach($ru as $key => $value)
+                                    @if($letter == $key)
+                                        <a class="brands__all-item brands__all-item-link" data-order="ru-{{ $value }}">
+                                            <span>Все бренды на {{ $key }}</span>
+                                        </a>
+                                    @endif
+                                @endforeach
                             </div>
-                        </div>
-                    </div>
-                @endforeach
+                        @endif
+                    @endforeach
+                </div>
             </div>
-            {{ $brands->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
+
 @endsection

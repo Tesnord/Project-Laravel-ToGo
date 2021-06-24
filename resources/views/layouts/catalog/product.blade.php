@@ -35,21 +35,22 @@
                             {{ $product->price->currency->value }}
                         </div>
                     </div>
-                    <a class="catalog__item-buy" style="color: #ffffff" data-product-id="{{ $product->id }}">
-                        купить
-                        <img src="{{ asset('assets/images/svg/cart.svg')}}" alt="">
-                    </a>
-                    {{--<div class="catalog__item-amount">
-                        <input type="text" value="1">
-                        <span class="up">
-                            <img src="{{asset('assets/images/svg/plus.svg')}}" alt="">
-                        </span>
-                        <span class="down">
-                            <img src="{{asset('assets/images/svg/minus.svg')}}" alt="">
-                        </span>
-                    </div>--}}
+                    <div class="catalog__item-button">
+                        <a class="catalog__item-buy" style="color: #ffffff" data-product-id="{{ $product->id }}">
+                            купить
+                            <img src="{{ asset('assets/images/svg/cart.svg')}}" alt="">
+                        </a>
+                    </div>
+{{--                    <div class="catalog__item-amount" data-product-id="{{ $product->id }}">--}}
+{{--                        <input type="text" min="1" max="20" value="{{$count->quantityInBasket}}">--}}
+{{--                        <span class="up">--}}
+{{--                            <img src="{{ asset('assets/images/svg/plus.svg') }}" alt="">--}}
+{{--                        </span>--}}
+{{--                        <span class="down">--}}
+{{--                            <img src="{{ asset('assets/images/svg/minus.svg') }}" alt="">--}}
+{{--                        </span>--}}
+{{--                    </div>--}}
                 </div>
-
             </div>
         </div>
     </div>

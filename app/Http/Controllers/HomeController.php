@@ -30,6 +30,31 @@ class HomeController extends Controller
         return view('policy');
     }
 
+    public function public()
+    {
+        return view('public');
+    }
+
+    public function scores()
+    {
+        return view('scores');
+    }
+
+    public function provider()
+    {
+        return view('provider');
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function delivery()
+    {
+        return view('delivery');
+    }
+
     public function subscribeIndex()
     {
         return view('subscribe.index');

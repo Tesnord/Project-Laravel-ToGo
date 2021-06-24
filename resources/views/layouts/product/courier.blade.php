@@ -4,5 +4,5 @@
     <div class="card-product__bann-tx">Наш курьер доставит ваш заказ в течение
         1,5 часа
     </div>
-    <a class="button button-bord2" href="#">Узнать больше</a>
+    <a class="button button-bord2" href="{{ route('delivery') }}">Узнать больше</a>
 </div>

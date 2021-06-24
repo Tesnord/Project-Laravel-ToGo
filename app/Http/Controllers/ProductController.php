@@ -8,12 +8,17 @@ use App\Utils\MarketBaskets;
 use Exception;
 use Illuminate\Http\Request;
 use App\Utils\MarketFavorites;
+use Illuminate\Support\Facades\Cookie;
 
 class ProductController extends Controller
 {
     public function index(string $path = '/')
     {
         $category = Category::getByPath($path);
+        // $cookie_market_basket = $_COOKIE['market_basket'];
+        // $market_basket = json_decode($cookie_market_basket, true, 512, JSON_THROW_ON_ERROR);
+        // $basket = is_array($market_basket["basket"]);
+        // dd($market_basket);
 
         if ($category === null) {
             abort(404);
@@ -103,6 +108,11 @@ class ProductController extends Controller
             'search' => $search,
             'offer' => $offer,
         ]);
+    }
+
+    public function subscribe()
+    {
+        return view('subscribe.index');
     }
 }
 

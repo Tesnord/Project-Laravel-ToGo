@@ -5,8 +5,8 @@
 <div class="breadcrumb-block">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Главная</a></li>
-            <li class="breadcrumb-item"><a href="#">Товары по подписке</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="">Товары по подписке</a></li>
             <li class="breadcrumb-item active">FRESH</li>
         </ol>
     </div>
