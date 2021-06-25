@@ -6,7 +6,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-json": "*",
         "arrilot/laravel-widgets": "^3.13",
+        "cviebrock/eloquent-sluggable": "^8.0",
         "davejamesmiller/laravel-breadcrumbs": "5.x",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
@@ -15,8 +17,7 @@
         "ladamalina/lingua-stem-ru": "dev-master",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "lavary/laravel-menu": "^1.8",
-      "ext-json": "*"
+        "lavary/laravel-menu": "^1.8"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

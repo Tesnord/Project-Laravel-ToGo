@@ -91,24 +91,9 @@ class BrandsController extends Controller
                 return $key;
             })
         ;
-
-        if (isset($request->orderBy)) {
-            if ($request->orderBy == 'en-{{$row}}') {
-                $brands = $brands->orderBy('en');
-            }
-            if ($request->orderBy == 'ru-{{$row}}') {
-                $brands = $brands->orderBy('ru');
-            }
-            if ($request->orderBy == '{{$row}}') {
-                $brands = $brands->orderBy('number');
-            }
-        }
-
-        if ($request->ajax()) {
-            return view('layouts.brands.filter', [
-                'brands' => $brands,
-            ])->render();
-        }
+        $filtered = $brands->filter(function ($key, $value) {
+            return $value;
+        });
 
         return view('brands.index', [
             'brands' => $brands,

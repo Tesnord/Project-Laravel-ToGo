@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Brand extends Model
 {
+    use Sluggable;
     public function getImages()
     {
         return File::query()
@@ -31,6 +34,15 @@ class Brand extends Model
     public function promotions()
     {
         return $this->hasMany(Promotions::class);
+    }
+
+    public function sluggable (): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
 
