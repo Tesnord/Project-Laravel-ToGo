@@ -3,13 +3,17 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Filters\QueryFilter;
 
 
 class Brand extends Model
 {
+    use HasFactory;
     use Sluggable;
+
     public function getImages()
     {
         return File::query()
@@ -39,12 +43,15 @@ class Brand extends Model
     public function sluggable (): array
     {
         return [
-            'slug' => [
+            'slug_brand' => [
                 'source' => 'title'
             ]
         ];
     }
 
+    public function scopeFilter(Builder $builder, QueryFilter $filter)
+    {
+        return $filter->apply($builder);
+    }
 
-    use HasFactory;
 }

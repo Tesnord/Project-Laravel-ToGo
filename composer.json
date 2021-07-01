@@ -17,7 +17,8 @@
         "ladamalina/lingua-stem-ru": "dev-master",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
-        "lavary/laravel-menu": "^1.8"
+        "lavary/laravel-menu": "^1.8",
+      "ext-http": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

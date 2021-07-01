@@ -38,9 +38,9 @@ Breadcrumbs::for('home', function ($trail) {
     });
 
         // Home > Brands > Brand
-        Breadcrumbs::for('brands.show', function ($trail, $brand) {
+        Breadcrumbs::for('catalog.brand', function ($trail, $brand) {
             $trail->parent('brands.index');
-            $trail->push($brand->name, route('brands.show', $brand));
+            $trail->push($brand->name, route('catalog.brand', ['slug_brand' => $brand->slug_brand]));
         });
 
     // Home > Promotions

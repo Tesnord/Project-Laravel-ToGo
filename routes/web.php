@@ -46,7 +46,6 @@ Route::prefix('promotions')->group(function () {
 
 Route::prefix('brands')->group(function () {
     Route::get('/', 'BrandsController@index')->name('brands.index');
-    // Route::get('/{slug_brand}', 'BrandsController@show')->name('brands.show');
 });
 
 
@@ -54,6 +53,7 @@ Route::prefix('catalog')->group(function () {
     Route::get('/search', 'ProductController@search')->name('catalog.search');
     Route::get('/favorite', 'ProductController@favorite')->name('catalog.favorite');
     Route::get('/product/{slug_product}', 'ProductController@show')->name('catalog.product');
+    Route::get('/brand/{slug_brand}', 'BrandsController@catalog')->name('catalog.brand');
     Route::get('/{path}/', 'ProductController@index')
         ->where('path', '[a-zA-Z0-9\/-]+')
         ->name('catalog.index');

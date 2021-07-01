@@ -10,9 +10,7 @@
             <div class="catalog-brand-title__holder">
                 <div class="catalog-brand-title__main">
                     <div class="catalog-brand-title__logo">
-                        @foreach($brand->getImagesLabel() as $img)
-                            <img src="{{ asset($img->src) }}" alt="">
-                        @endforeach
+                        <img src="{{ asset('assets/images/logo-i.png') }}" alt="">
                     </div>
                     <h1>{{ $brand->name }}</h1>
                     <div class="title-main__numb">{{$products->count()}} товаров</div>

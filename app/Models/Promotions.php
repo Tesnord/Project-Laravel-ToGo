@@ -25,5 +25,10 @@ class Promotions extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function banner()
+    {
+        return $this->hasOne(Banner::class);
+    }
+
     use HasFactory;
 }

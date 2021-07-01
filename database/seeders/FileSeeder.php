@@ -14,13 +14,13 @@ class FileSeeder extends Seeder
      */
     public function run()
     {
-        for ($m = 1; $m <= 15; $m++)
+        for ($m = 12; $m <= 19; $m++)
             DB::table('files')->insert([
-                'src' => '/assets/images/action-img' . rand(1, 4) . '.jpg',
-                'entity_type' => 'App\Models\Promotions',
+                'src' => '/assets/images/banner'. (rand(1,2)) .'.jpg',
+                'entity_type' => 'App\Models\Banner',
                 'entity_id' => $m,
+                'entity_var' => ''
             ]);
 
     }
-// catalog-img
 }

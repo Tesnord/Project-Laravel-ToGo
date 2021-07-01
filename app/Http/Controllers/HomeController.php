@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use App\Utils\MarketBaskets;
@@ -18,10 +19,20 @@ class HomeController extends Controller
         $categories = Category::query()
             ->where('parent_id', 0)
             ->paginate(7);
+        $banners = Banner::all()
+            ->sortByDesc(function ($object, $key) {
+                return $key;
+            })
+            ->groupBy(function ($item) {
+                $i = $item->min;
+                return $i;
+            })
+        ;
 
         return view('home', [
             'menu_categories' => $menu_categories,
             'categories' => $categories,
+            'banners' => $banners,
         ]);
     }
 
