@@ -40,12 +40,12 @@
                         <div class="brands__all-title">{{ $letterBrand }}</div>
                         <div class="brands__all-inner">
                             @foreach($letterBrands as $brand)
-                                <a class="brands__all-item" href="#">
+                                <a class="brands__all-item" href="{{ route('catalog.brand', $brand->slug_brand) }}">
                                     <span>{{ $brand->name }}</span>
                                 </a>
                             @endforeach
                                 <a class="brands__all-item brands__all-item-link" href="{{ route('brands.show', [$letter->value]) }}">
-                                    <span>Все бренды на {{ $letter->letter }}</span>
+                                    <span>Все бренды на {{ $letterBrand }}</span>
                                 </a>
                         </div>
                     @endforeach
