@@ -46,6 +46,7 @@ Route::prefix('promotions')->group(function () {
 
 Route::prefix('brands')->group(function () {
     Route::get('/', 'BrandsController@index')->name('brands.index');
+    Route::get('/{letter}', 'BrandsController@show')->name('brands.show');
 });
 
 

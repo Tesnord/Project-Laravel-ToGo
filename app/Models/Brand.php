@@ -49,6 +49,11 @@ class Brand extends Model
         ];
     }
 
+    public function letters()
+    {
+        return $this->belongsToMany(Letter::class);
+    }
+
     public function scopeFilter(Builder $builder, QueryFilter $filter)
     {
         return $filter->apply($builder);
